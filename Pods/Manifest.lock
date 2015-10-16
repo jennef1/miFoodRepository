@@ -1,0 +1,54 @@
+PODS:
+  - Bolts (1.2.0):
+    - Bolts/AppLinks (= 1.2.0)
+    - Bolts/Tasks (= 1.2.0)
+  - Bolts/AppLinks (1.2.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.2.0)
+  - FBSDKCoreKit (4.6.0-beta1):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc (= 4.6.0-beta1)
+    - FBSDKCoreKit/no-arc (= 4.6.0-beta1)
+  - FBSDKCoreKit/arc (4.6.0-beta1):
+    - Bolts (~> 1.1)
+  - FBSDKCoreKit/no-arc (4.6.0-beta1):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc
+  - FBSDKLoginKit (4.5.1):
+    - FBSDKCoreKit
+  - GoogleMaps (1.10.1)
+  - JTCalendar (2.1.4)
+  - MBProgressHUD (0.9.1)
+  - Parse (1.8.1):
+    - Bolts/Tasks (>= 1.2.0)
+  - ParseFacebookUtilsV4 (1.8.1):
+    - Bolts/Tasks (>= 1.2.0)
+    - FBSDKCoreKit (~> 4.0)
+    - FBSDKLoginKit (~> 4.0)
+    - Parse (~> 1.8.0)
+  - ParseUI (1.1.6):
+    - Bolts/Tasks (~> 1.2)
+    - Parse (~> 1.8)
+
+DEPENDENCIES:
+  - Bolts (~> 1.2)
+  - FBSDKCoreKit (= 4.6.0-beta1)
+  - GoogleMaps (~> 1.10)
+  - JTCalendar (~> 2.1)
+  - MBProgressHUD (~> 0.9)
+  - Parse (~> 1.8)
+  - ParseFacebookUtilsV4 (~> 1.8)
+  - ParseUI (~> 1.1)
+
+SPEC CHECKSUMS:
+  Bolts: d176cb1e0012175589e389a9db49b85e27787576
+  FBSDKCoreKit: abce8d2d6f556110c8ef5fcf4edc44e9be83da2f
+  FBSDKLoginKit: 225cc9a388a92916ee3f3bb14422017b6e44b65b
+  GoogleMaps: ebf08677f181d9c2dcdbd1721d206f02beccc9b1
+  JTCalendar: 9b1352c7ec41cc26b19c189d6608ba48060a53d9
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  Parse: 2155953b1565494095d5fa5c83b3c77f2c677c09
+  ParseFacebookUtilsV4: 2c54f1c9756f4827417984f42b64bc38571d626b
+  ParseUI: 8a22e448c03f825203d8c379c80523517f68baa3
+
+COCOAPODS: 0.38.2
