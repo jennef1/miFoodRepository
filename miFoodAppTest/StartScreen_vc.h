@@ -18,11 +18,17 @@
 - (void)loadUserProfileData;
 
 // Food2Fork get recipes
-- (void)foodForkasynchRequestRecipes;
+@property (strong, nonatomic) NSDictionary *queryResponse;
+@property (strong, nonatomic) NSMutableArray *queryURLsArray;
+@property (strong, nonatomic) NSMutableArray *responseDics;
+
+- (void)parseForQueryIDsAndRunNetworkRequest;
+- (void)runNetworkRequestswithURLs:(NSArray *)urlArray;
 
 // navigation
 - (IBAction)cookAndOfferPressed:(id)sender;
 - (IBAction)findMealsPressed:(id)sender;
+- (IBAction)checkRecipesPressed:(id)sender;
 
 - (IBAction)logOutPressed:(id)sender;
 

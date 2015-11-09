@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.calendarManager          = [JTCalendarManager new];
+    self.calendarManager = [JTCalendarManager new];
     self.calendarManager.delegate = self;
     
     [self.calendarManager setMenuView:self.jtMenuView];
@@ -30,13 +30,12 @@
     [self.calendarManager setDate:[NSDate date]];
     
     // TODO: adjust height of calendar & Check if font can be increased
-    self.calendarManager.settings.weekModeEnabled = YES;
+    self.calendarManager.settings.weekModeEnabled = NO;
     [self.calendarManager reload];
     
     [self configureLabelsWithDate:[NSDate date]];
     
-//    UIColor *buttonColor = [UIColor colorWithRed:(255/255.0) green:(211/255.0) blue:(41/255.0) alpha:1];
-    UIColor *buttonColor = [UIColor colorWithRed:(231/255.0) green:(48/255.0) blue:(40/255.0) alpha:1];
+    UIColor *buttonColor = [UIColor colorWithRed:(242/255.0) green:(202/255.0) blue:(41/255.0) alpha:1];
     [self.nextButton setBackgroundColor: buttonColor];
     [self.nextButton setTitle:@"next" forState:UIControlStateNormal];
 }
@@ -113,16 +112,6 @@
     
     return [self.calendarManager.dateHelper date:date isEqualOrAfter:[NSDate date]];
 }
-
-//#pragma mark - UIDatePicker
-//
-//- (void)datePickerChanged:(UIDatePicker *)datePicker
-//{
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"dd.MMM yy"];
-//    NSString *strDate = [dateFormatter stringFromDate:datePicker.date];
-//    self.date_tf.text = strDate;
-//}
 
 #pragma mark - DateLabel Configuration
 

@@ -13,19 +13,21 @@
 @interface Singleton : NSObject {
     
     // create food
-    NSDate          *singl_date;
-    NSMutableArray  *singl_foodImages;
     NSString        *singl_title;
     NSString        *singl_description;
+    NSMutableArray  *singl_foodImages;
+    UIImage         *singl_coverImage;
+    NSDate          *singl_date;
+    double          singl_pickupTime;
     double          singl_price;
     int             singl_quantity;
     
-    NSString                *singl_formattedAddressName;
-    NSString                *singl_addressName;
-    NSString                *singl_cityName;
-    NSString                *singl_placeID;
-    CLLocationCoordinate2D  singl_coordinates;
-    NSString                *singl_locationComment;
+    NSString  *singl_formattedAddressName;
+    NSString  *singl_addressName;
+    NSString  *singl_cityName;
+    NSString  *singl_placeID;
+    NSString  *singl_locationComment;
+    CLLocationCoordinate2D singl_coordinates;
     
     // find food
     NSDate     *singl_findDate;
@@ -34,13 +36,18 @@
     PFGeoPoint *singl_findCoordinates;
     NSString   *singl_findFoodID;
     PFObject   *singl_findObjectDetails;
+    
+    // recipe details
+    NSMutableArray *recipeDictionary;
 }
 
 // create food
-@property (nonatomic, strong) NSDate         *singl_date;
-@property (nonatomic, strong) NSMutableArray *singl_foodImages;
 @property (nonatomic, strong) NSString       *singl_title;
 @property (nonatomic, strong) NSString       *singl_description;
+@property (nonatomic, strong) NSMutableArray *singl_foodImages;
+@property (nonatomic, strong) UIImage        *singl_coverImage;
+@property (nonatomic, strong) NSDate         *singl_date;
+@property (assign) double singl_pickupTime;
 @property (assign) double singl_price;
 @property (assign) int    singl_quantity;
 
@@ -58,6 +65,9 @@
 @property (nonatomic, strong) PFGeoPoint *singl_findCoordinates;
 @property (nonatomic, strong) NSString   *singl_findFoodID;
 @property (nonatomic, strong) PFObject   *singl_findObjectDetails;
+
+// recipe details
+@property (nonatomic, strong) NSMutableArray *recipeDictionary;
 
 + (Singleton *)sharedSingleton;
 

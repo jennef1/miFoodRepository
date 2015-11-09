@@ -1,4 +1,26 @@
 PODS:
+  - AFNetworking (2.6.1):
+    - AFNetworking/NSURLConnection (= 2.6.1)
+    - AFNetworking/NSURLSession (= 2.6.1)
+    - AFNetworking/Reachability (= 2.6.1)
+    - AFNetworking/Security (= 2.6.1)
+    - AFNetworking/Serialization (= 2.6.1)
+    - AFNetworking/UIKit (= 2.6.1)
+  - AFNetworking/NSURLConnection (2.6.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.6.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.6.1)
+  - AFNetworking/Security (2.6.1)
+  - AFNetworking/Serialization (2.6.1)
+  - AFNetworking/UIKit (2.6.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - APParallaxHeader (0.1.6)
   - Bolts (1.2.0):
     - Bolts/AppLinks (= 1.2.0)
     - Bolts/Tasks (= 1.2.0)
@@ -31,6 +53,8 @@ PODS:
     - Parse (~> 1.8)
 
 DEPENDENCIES:
+  - AFNetworking (~> 2.6)
+  - APParallaxHeader (~> 0.1)
   - Bolts (~> 1.2)
   - FBSDKCoreKit (= 4.6.0-beta1)
   - GoogleMaps (~> 1.10)
@@ -41,6 +65,8 @@ DEPENDENCIES:
   - ParseUI (~> 1.1)
 
 SPEC CHECKSUMS:
+  AFNetworking: 8e4e60500beb8bec644cf575beee72990a76d399
+  APParallaxHeader: 854bc48a2487ca12c702f8a236fec0d89cdac5c3
   Bolts: d176cb1e0012175589e389a9db49b85e27787576
   FBSDKCoreKit: abce8d2d6f556110c8ef5fcf4edc44e9be83da2f
   FBSDKLoginKit: 225cc9a388a92916ee3f3bb14422017b6e44b65b
@@ -51,4 +77,4 @@ SPEC CHECKSUMS:
   ParseFacebookUtilsV4: 2c54f1c9756f4827417984f42b64bc38571d626b
   ParseUI: 8a22e448c03f825203d8c379c80523517f68baa3
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

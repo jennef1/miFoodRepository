@@ -9,9 +9,10 @@
 #import "MapView_vc.h"
 #import "Singleton.h"
 #import "AddressSearch_vc.h"
-#import "ImageAddress_overview.h"
+#import "Overview_tvc.h"
 
 #import <AddressBook/AddressBook.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface MapView_vc ()
 
@@ -20,7 +21,7 @@
 @implementation MapView_vc
 
 @synthesize currentCoordinates, searchReturn_CityName, searchReturn_PlaceID, searchReturn_FormatAddress, searchReturn_Coordinates;
-@synthesize locationManager, addressCity, addressFormated, addressCoordinates;
+@synthesize locationManager, addressCity, addressFormated, addressCoordinates, hudImageViewTick;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,6 +30,7 @@
     self.searchTF.delegate        = self;
     self.locationManager.delegate = self;
     
+    // TODO: replace emptyTF with image
     // design configurations
     [self.emptyTF       setLeftViewMode:UITextFieldViewModeAlways];
     [self.emptyTF.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
@@ -44,10 +46,19 @@
     [self.locationButton.layer setBorderWidth:0.9];
     [self.locationButton.layer setCornerRadius:5];
     
+    UIImageView *hudTick  = [[UIImageView alloc]initWithFrame:CGRectMake(4, 4, 27, 27)];
+    hudTick.image         = [UIImage imageNamed:@"checkmarkWhite"];
+    self.hudImageViewTick = hudTick;
+    self.hudImageViewTick = hudTick;
+    
+    [self.locButHubView.layer setCornerRadius:3];
+    [self.locButHubView addSubview:self.hudImageViewTick];
+    
     [self initiateLocationManager];
     
     // TODO: if we can get USER REGION - set region
     // + Starting location london in Singleton.h
+    
     MKCoordinateRegion initialRegion;
     CLLocationCoordinate2D startingPoint;
     startingPoint.latitude  = 51.520380;
@@ -65,7 +76,7 @@
     GMSCameraPosition *initialCam = [GMSCameraPosition
                                      cameraWithLatitude:self.currentCoordinates.latitude
                                               longitude:self.currentCoordinates.longitude
-                                                   zoom:12];
+                                                   zoom:15];
     
     [self setMapButtonsWithCoordinates:initialCam];
 }
@@ -77,6 +88,9 @@
 #pragma mark - LocationManager Delegate
 
 - (void)initiateLocationManager {
+    
+    // TODO: add a nice first view telling about theim to accelpt location manager because...
+    
     self.locationManager = [[CLLocationManager alloc]init];
     
     // Check for iOS 8 so it won't crash with on iOS 7.
@@ -106,11 +120,20 @@
 
 - (void)setMapButtonsWithCoordinates:(GMSCameraPosition *)cameraPosition {
     
+    self.hudImageViewTick.alpha = 0;
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.locButHubView animated:YES];
+    hud.mode           = MBProgressHUDModeIndeterminate;
+    [hud show:YES];
+    
     [self.mapFood setCamera:cameraPosition];
     [self.mapFood setMapType:kGMSTypeNormal];
     
+    // TODO: add HUB spinner
+    
     id handler = ^(GMSReverseGeocodeResponse *response, NSError *error) {
         if (error == nil) {
+            hud.hidden = YES;
+            self.hudImageViewTick.alpha = 1;
             GMSReverseGeocodeResult *result = response.firstResult;
             self.current_shortAddress       = result.lines[0];
             self.current_FormatAddress      = result.lines[1];
@@ -122,7 +145,6 @@
                 self.locButAddressTitle.text = self.current_shortAddress;
             }
             self.locButAddressSubTitle.text = self.current_CityName;
-            
         }
     };
     
@@ -161,13 +183,27 @@
         mySingleton.singl_placeID = self.searchReturn_PlaceID;
     }
     
-    ImageAddress_overview *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ImageAddress_ID"];
+    Overview_tvc *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"OverviewID"];
     [self.navigationController pushViewController:vc animated:NO];
     
 }
 
 - (IBAction)backPressed:(id)sender {
-    ImageAddress_overview *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ImageAddress_ID"];
+    
+    // Store variables globally
+    Singleton *mySingleton                  = [Singleton sharedSingleton];
+    mySingleton.singl_formattedAddressName  = self.current_FormatAddress;
+    mySingleton.singl_addressName           = self.locButAddressTitle.text;
+    mySingleton.singl_cityName              = self.locButAddressSubTitle.text;
+    mySingleton.singl_coordinates           = self.currentCoordinates;
+    
+    if (self.searchReturn_PlaceID.length == 0) {
+        mySingleton.singl_placeID = @"empty";
+    } else {
+        mySingleton.singl_placeID = self.searchReturn_PlaceID;
+    }
+    
+    Overview_tvc *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"OverviewID"];
     [self.navigationController pushViewController:vc animated:NO];
 }
 

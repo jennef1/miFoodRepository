@@ -20,45 +20,72 @@
 
 @implementation Preview_vc
 
-@synthesize chosenImages, profilePictureURL, userMealsOverall_nr, userRatingOverall_nr, foodLocationCoordinate, bankDetailsStatus;
+@synthesize profilePictureURL, userMealsOverall_nr, userRatingOverall_nr, foodLocationCoordinate, bankDetailsStatus, submitButton;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // design config
-    [self.backgroundAddressTF.layer setBorderColor:[[UIColor whiteColor] CGColor]];
-    [self.backgroundAddressTF.layer setBorderWidth:0.7];
-    [self.backgroundDateTF.layer    setBorderColor:[[UIColor whiteColor] CGColor]];
-    [self.backgroundDateTF.layer    setBorderWidth:0.7];
-    
-    CALayer *layer = [self.previewImage1 layer];
-    [layer setMasksToBounds:YES];
-    [layer setCornerRadius:5.0];
-    
     // inputs from masks
-    Singleton* mySingleton          = [Singleton sharedSingleton];
-    self.chosenImages               = mySingleton.singl_foodImages;
-    self.foodTitleLabel.text        = mySingleton.singl_title;
-    self.foodDescription_tv.text    = mySingleton.singl_description;
-    self.foodPriceLabel.text        = [NSString stringWithFormat:@"%.2lf", mySingleton.singl_price];
-    self.addressNameLabel.text      = mySingleton.singl_addressName;
-    self.addressCityLabel.text      = mySingleton.singl_cityName;
-    self.foodLocationCoordinate     = mySingleton.singl_coordinates;
+    Singleton* mySingleton        = [Singleton sharedSingleton];
+    self.coverImage.image         = mySingleton.singl_coverImage;
+    self.foodTitle_tv.text        = mySingleton.singl_title;
+    self.foodDescription_tv.text  = mySingleton.singl_description;
+    self.foodPriceLabel.text      = [NSString stringWithFormat:@"%.2lf", mySingleton.singl_price];
+    self.addressNameLabel.text    = mySingleton.singl_addressName;
+    self.addressCityLabel.text    = mySingleton.singl_cityName;
+    self.foodLocationCoordinate   = mySingleton.singl_coordinates;
+    self.locationComment_tv.text  = mySingleton.singl_locationComment;
+    self.availabilityCount.text   = [NSString stringWithFormat:@"%d / %d", mySingleton.singl_quantity, mySingleton.singl_quantity];
+    double pickuptime             = mySingleton.singl_pickupTime;
     
-    NSDateFormatter *dateFormater   = [NSDateFormatter new];
-    dateFormater.dateFormat         = @"dd.MMM @ HH:mm";
-    self.dateLabel.text             = [dateFormater stringFromDate: mySingleton.singl_date];
-    self.locationCommentLabel.text  = mySingleton.singl_locationComment;
+    double pickUphour;
+    double minutes = modf(pickuptime, &pickUphour);
+    if (minutes == 0) {
+        self.pickUpTime.text = [NSString stringWithFormat:@"%.0f :00", pickUphour];
+    } else {
+        self.pickUpTime.text = [NSString stringWithFormat:@"%.0f :30", pickUphour];
+    }
+    
+    // design config
+    [self.coverImageButtomIcon.layer setCornerRadius:20];
+    [self.backgroundAddress_tf.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [self.backgroundAddress_tf.layer setBorderWidth:0.7];
+    [self.backgroundAddress_tf.layer setCornerRadius:4];
+    
+    CGRect descTVrect             = self.foodDescription_tv.frame;
+    descTVrect.size.height        = self.foodDescription_tv.contentSize.height;
+    self.foodDescription_tv.frame = descTVrect;
+    
+    self.scrollView.delegate = self;    
     
     // main thread
     [self getUserDetails:self];
     [self setLocationOnMap:self];
-    [self configureImages:self];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - SubmitButton Config
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    CGRect btnFrame     = CGRectMake(0, (CGRectGetHeight(self.view.bounds) - 50) , self.view.frame.size.width, 50);
+    
+    UIButton *btn       = [[UIButton alloc]initWithFrame:btnFrame];
+    btn.backgroundColor = [UIColor colorWithRed:(242/255.0) green:(202/255.0) blue:(41/255.0) alpha:1];
+    self.submitButton   = btn;
+    [self.submitButton setTitle: @"Submit" forState: UIControlStateNormal];
+    [self.submitButton addTarget:self action:@selector(submitPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.view addSubview:self.submitButton];
+    [self.scrollView setContentOffset:CGPointMake(0, 1) animated:NO];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    CGRect frame    = self.submitButton.frame;
+    frame.origin.y  = self.view.frame.size.height - self.submitButton.frame.size.height; // scrollView.contentOffset.y +
+    self.submitButton.frame = frame;
+    
+    [self.view bringSubviewToFront:self.submitButton];
 }
 
 #pragma mark - User details
@@ -82,14 +109,20 @@
                 self.userRatingOverall_nr = [object objectForKey:@"ratingOverall"];
                 self.userMealsOverall_nr  = [object objectForKey:@"menusOverall"];
                 self.bankDetailsStatus    = [object objectForKey:@"bankDetailStatus"];
-                
             }
             [self requestFBpictureViaURL:self];
             
             self.userPicture.layer.cornerRadius  = ((self.userPicture.frame.size.width / 2) - 2);
             self.userPicture.clipsToBounds       = YES;
-            self.userPicture.layer.borderWidth   = 1.0f;
-            self.userPicture.layer.borderColor   = [UIColor whiteColor].CGColor;
+            self.userPicture.layer.borderWidth   = 0.8f;
+            self.userPicture.layer.borderColor   = [UIColor lightGrayColor].CGColor;
+            
+            UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:self.userPicture.bounds];
+//            self.userPicture.layer.masksToBounds = NO;
+            self.userPicture.layer.shadowColor   = [UIColor darkGrayColor].CGColor;
+            self.userPicture.layer.shadowOffset  = CGSizeMake(0.0f, 3.0f);
+            self.userPicture.layer.shadowOpacity = 0.5f;
+            self.userPicture.layer.shadowPath    = shadowPath.CGPath;
             
             self.userMealsOverall_label.text     = [NSString stringWithFormat:@"%@ menus cooked", self.userMealsOverall_nr];
         }
@@ -112,57 +145,13 @@
                            }];
 }
 
--(void)configureImages:(id)sender {
-    
-    UIImage *placeholderSmall = [UIImage imageNamed:@"imagePlaceholder.png"];
-    UIImage *placeholderBig   = [UIImage imageNamed:@"imageLargePlaceholder.png"];
-    
-    if ([self.chosenImages count] == 5) {
-        self.previewImage1.image = [self.chosenImages objectAtIndex:0];
-        self.previewImage2.image = [self.chosenImages objectAtIndex:1];
-        self.previewImage3.image = [self.chosenImages objectAtIndex:2];
-        self.previewImage4.image = [self.chosenImages objectAtIndex:3];
-        self.previewImage5.image = [self.chosenImages objectAtIndex:4];
-    } else if ([self.chosenImages count] == 4) {
-        self.previewImage1.image = [self.chosenImages objectAtIndex:0];
-        self.previewImage2.image = [self.chosenImages objectAtIndex:1];
-        self.previewImage3.image = [self.chosenImages objectAtIndex:2];
-        self.previewImage4.image = [self.chosenImages objectAtIndex:3];
-        self.previewImage5.image = placeholderSmall;
-    } else if ([self.chosenImages count] == 3) {
-        self.previewImage1.image = [self.chosenImages objectAtIndex:0];
-        self.previewImage2.image = [self.chosenImages objectAtIndex:1];
-        self.previewImage3.image = [self.chosenImages objectAtIndex:2];
-        self.previewImage4.image = placeholderSmall;
-        self.previewImage5.image = placeholderSmall;
-    } else if ([self.chosenImages count] == 2) {
-        self.previewImage1.image = [self.chosenImages objectAtIndex:0];
-        self.previewImage2.image = [self.chosenImages objectAtIndex:1];
-        self.previewImage3.image = placeholderSmall;
-        self.previewImage4.image = placeholderSmall;
-        self.previewImage5.image = placeholderSmall;
-    } else if ([self.chosenImages count] == 1) {
-        self.previewImage1.image = [self.chosenImages objectAtIndex:0];
-        self.previewImage2.image = placeholderSmall;
-        self.previewImage3.image = placeholderSmall;
-        self.previewImage4.image = placeholderSmall;
-        self.previewImage5.image = placeholderSmall;
-    } else {
-        self.previewImage1.image = placeholderBig;
-        self.previewImage2.image = placeholderSmall;
-        self.previewImage3.image = placeholderSmall;
-        self.previewImage4.image = placeholderSmall;
-        self.previewImage5.image = placeholderSmall;
-    }
-}
-
 #pragma mark - GoogleMap details
 
 - (void)setLocationOnMap:(id)sender {
     
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.foodLocationCoordinate.latitude
                                                             longitude:self.foodLocationCoordinate.longitude
-                                                                 zoom:13];
+                                                                 zoom:15];
     [self.foodMap setCamera:camera];
     [self.foodMap setMapType:kGMSTypeNormal];
     
@@ -176,7 +165,7 @@
 
 #pragma mark - Parse Save Item
 
-- (IBAction)submitPressed:(id)sender {
+- (void)submitPressed:(id)sender {
     //
     //    // check if bank details available
     //    NSString *bankDetailsAvailableCompareString = @"available";
@@ -203,6 +192,7 @@
     Singleton* mySingleton      = [Singleton sharedSingleton];
     int quantity                = mySingleton.singl_quantity;
     double price                = mySingleton.singl_price;
+    NSString *pickUpTimeStr     = self.pickUpTime.text;
     NSString *title             = mySingleton.singl_title;
     NSString *description       = mySingleton.singl_description;
     NSDate   *dateInput         = mySingleton.singl_date;
@@ -213,21 +203,12 @@
     NSString *locationComments  = mySingleton.singl_locationComment;
     CLLocationCoordinate2D coor = mySingleton.singl_coordinates;
     NSString *urlString         = [self.profilePictureURL absoluteString];
-    NSUInteger imageCount       = [self.chosenImages count];
     PFGeoPoint *coordinatePoint = [PFGeoPoint geoPointWithLatitude:coor.latitude
                                                          longitude:coor.longitude];
-    
-    NSDateFormatter *dFormatter = [[NSDateFormatter alloc] init];
-    [dFormatter setDateFormat:@"dd.MMM yy  @ HH:mm"];
-    NSString *dateString        = [dFormatter stringFromDate:dateInput];
     
     NSDateFormatter *dateOnlyFm = [[NSDateFormatter alloc] init];
     [dateOnlyFm setDateFormat:@"dd.MMM yy"];
     NSString *dateOnlyString    = [dateOnlyFm stringFromDate:dateInput];
-    
-    NSDateFormatter *timeOnlyFm = [[NSDateFormatter alloc] init];
-    [timeOnlyFm setDateFormat:@"HH:mm"];
-    NSString *timeOnlyString    = [timeOnlyFm stringFromDate:dateInput];
     
     // Parse Object
     PFObject *menuItems = [PFObject objectWithClassName:@"Menus"];
@@ -242,31 +223,23 @@
     
     [menuItems setObject:title              forKey:@"offer_title"];
     [menuItems setObject:description        forKey:@"offer_description"];
-    [menuItems setObject:dateString         forKey:@"offer_dateFullString"];
     [menuItems setObject:dateOnlyString     forKey:@"offer_dateOnlyString"];
-    [menuItems setObject:timeOnlyString     forKey:@"offer_timeOnlyString"];
+    [menuItems setObject:pickUpTimeStr      forKey:@"offer_timeOnlyString"];
     [menuItems setObject:addressFormatted   forKey:@"address_formatted"];
     [menuItems setObject:addressName        forKey:@"address_name"];
     [menuItems setObject:cityName           forKey:@"address_city"];
     [menuItems setObject:placeID            forKey:@"address_placeID"];
     [menuItems setObject:locationComments   forKey:@"address_locationComments"];
     [menuItems setObject:coordinatePoint    forKey:@"address_geoPointCoordinates"];
-    [menuItems setObject:[NSNumber numberWithDouble:price]            forKey:@"offer_price"];
-    [menuItems setObject:[NSNumber numberWithUnsignedLong:imageCount] forKey:@"imageCount"];
+    [menuItems setObject:[NSNumber numberWithDouble:price] forKey:@"offer_price"];
+   
+    NSData *imageData = UIImagePNGRepresentation(self.coverImage.image);
+    PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+    [menuItems setObject:imageFile forKey:@"coverImageFile"];
     
-    for (int i = 0; i < [self.chosenImages count]; i++) {
-        NSData *imageData       = UIImagePNGRepresentation([self.chosenImages objectAtIndex:i]);
-        PFFile *imageFile       = [PFFile fileWithName:@"image.png" data:imageData];
-        NSString *keyforImage   = [NSString stringWithFormat:@"imageFile%d", i];
-        [menuItems setObject:imageFile forKey:keyforImage];
-    }
-
-    
-    // TODO: if succeeded: Say thankyou , navigate home?
     [menuItems saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
             NSLog(@"MenuItem data upload successful");
-            
             hud.hidden = YES;
             
             [[HHAlertView shared] showAlertWithStyle:HHAlertStyleOk inView:self.view Title:@"Congrats!" detail:@"Share it on FB if you like to make your offer more popular" cancelButton:@"Share on FB!" Okbutton:@"Not now" block:^(HHAlertButton buttonindex) {
@@ -285,7 +258,8 @@
 
 #pragma mark - Navigation
 
-- (IBAction)cancelPressed:(id)sender {
+- (IBAction)backPressed:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

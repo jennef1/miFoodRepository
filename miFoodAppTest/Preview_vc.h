@@ -10,7 +10,10 @@
 #import <MapKit/MapKit.h>
 #import <GoogleMaps/GoogleMaps.h>
 
-@interface Preview_vc : UIViewController <GMSMapViewDelegate, NSURLConnectionDelegate>
+@interface Preview_vc : UIViewController <GMSMapViewDelegate, NSURLConnectionDelegate, UIScrollViewDelegate>
+
+
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 // user details
 @property (strong, nonatomic) IBOutlet UILabel     *userNameLabel;
@@ -22,35 +25,30 @@
 @property (strong, nonatomic) NSString *bankDetailsStatus;
 
 // menu details
+@property (strong, nonatomic) IBOutlet UIImageView *coverImage;
+@property (strong, nonatomic) IBOutlet UITextField *coverImageButtomIcon;
 @property (strong, nonatomic) IBOutlet UILabel     *foodPriceLabel;
-@property (strong, nonatomic) IBOutlet UILabel     *foodTitleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *availabilityCount;
+@property (strong, nonatomic) IBOutlet UILabel *pickUpTime;
+
+@property (strong, nonatomic) IBOutlet UITextView  *foodTitle_tv;
 @property (strong, nonatomic) IBOutlet UITextView  *foodDescription_tv;
 
-@property (strong, nonatomic) IBOutlet UITextField *backgroundAddressTF;
-@property (strong, nonatomic) IBOutlet UITextField *backgroundDateTF;
+@property (strong, nonatomic) IBOutlet UITextField *backgroundAddress_tf;
 @property (strong, nonatomic) IBOutlet UILabel     *addressNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel     *addressCityLabel;
 @property (strong, nonatomic) IBOutlet UILabel     *dateLabel;
-@property (strong, nonatomic) IBOutlet UITextView  *locationCommentLabel;
+@property (strong, nonatomic) IBOutlet UITextView  *locationComment_tv;
 @property (nonatomic) CLLocationCoordinate2D       foodLocationCoordinate;
-
-// image details
-@property (copy, nonatomic) NSMutableArray *chosenImages;
-@property (strong, nonatomic) IBOutlet UIImageView *previewImage1;
-@property (strong, nonatomic) IBOutlet UIImageView *previewImage2;
-@property (strong, nonatomic) IBOutlet UIImageView *previewImage3;
-@property (strong, nonatomic) IBOutlet UIImageView *previewImage4;
-@property (strong, nonatomic) IBOutlet UIImageView *previewImage5;
-- (void)configureImages:(id)sender;
 
 // google map
 @property (strong, nonatomic) IBOutlet GMSMapView *foodMap;
 - (void)setLocationOnMap:(id)sender;
 
 // navigation
-@property (strong, nonatomic) IBOutlet UIButton *submitButton;
-- (IBAction)submitPressed:(id)sender;
-- (IBAction)cancelPressed:(id)sender;
+@property (strong, nonatomic) UIButton *submitButton;
+- (void)submitPressed:(id)sender;
+- (IBAction)backPressed:(id)sender;
 - (void)saveItemToParse:(id)sender;
 
 // get user details

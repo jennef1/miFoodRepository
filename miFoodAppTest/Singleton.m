@@ -13,12 +13,14 @@
 static Singleton  *sharedSingleton = nil;
 
 // create food
-@synthesize singl_date, singl_foodImages, singl_title, singl_description, singl_price, singl_quantity;
+@synthesize singl_date, singl_pickupTime, singl_foodImages, singl_coverImage, singl_title, singl_description, singl_price, singl_quantity;
 @synthesize singl_formattedAddressName, singl_addressName, singl_cityName, singl_placeID, singl_coordinates, singl_locationComment;
 
 // find food
 @synthesize singl_findDate, singl_findCityName, singl_findPlaceID, singl_findCoordinates, singl_findFoodID, singl_findObjectDetails;
 
+// recipe details
+@synthesize recipeDictionary;
 
 + (Singleton *)sharedSingleton{
     

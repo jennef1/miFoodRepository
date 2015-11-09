@@ -9,12 +9,7 @@
 /* Begin PBXBuildFile section */
 		AB237814B1745B3AF8AA8F33 /* libPods-miFoodAppTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24ED548636D0558C07BF087A /* libPods-miFoodAppTest.a */; };
 		C201E9231B9725C5001AA413 /* lightgreyBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C201E9221B9725C5001AA413 /* lightgreyBackground.jpg */; };
-		C201E92E1B973936001AA413 /* FoodType_vc.m in Sources */ = {isa = PBXBuildFile; fileRef = C201E92D1B973936001AA413 /* FoodType_vc.m */; };
-		C201E9341B9854BD001AA413 /* TitleInput_vc.m in Sources */ = {isa = PBXBuildFile; fileRef = C201E9331B9854BD001AA413 /* TitleInput_vc.m */; };
-		C201E9371B9854CF001AA413 /* DescriptionInput_vc.m in Sources */ = {isa = PBXBuildFile; fileRef = C201E9361B9854CF001AA413 /* DescriptionInput_vc.m */; };
-		C201E93A1B9854E7001AA413 /* PriceQuantityInput_vc.m in Sources */ = {isa = PBXBuildFile; fileRef = C201E9391B9854E7001AA413 /* PriceQuantityInput_vc.m */; };
 		C201E93F1B986C93001AA413 /* DateTimeIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C201E93E1B986C93001AA413 /* DateTimeIcon.png */; };
-		C201E9421B986D4D001AA413 /* DateInput_vc.m in Sources */ = {isa = PBXBuildFile; fileRef = C201E9411B986D4D001AA413 /* DateInput_vc.m */; };
 		C20749001BA15205001981A9 /* penEgg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C20748FF1BA15205001981A9 /* penEgg.jpg */; };
 		C20C3E711BB1AAD300D29AE8 /* Watch-25.png in Resources */ = {isa = PBXBuildFile; fileRef = C20C3E701BB1AAD300D29AE8 /* Watch-25.png */; };
 		C20C3E731BB1AC0D00D29AE8 /* Location-25.png in Resources */ = {isa = PBXBuildFile; fileRef = C20C3E721BB1AC0D00D29AE8 /* Location-25.png */; };
@@ -32,6 +27,9 @@
 		C2528FCF1B9F07F20069691D /* login-button-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C2528FCB1B9F07F20069691D /* login-button-small@2x.png */; };
 		C2528FD21B9F08C30069691D /* Login_vc.m in Sources */ = {isa = PBXBuildFile; fileRef = C2528FD11B9F08C30069691D /* Login_vc.m */; };
 		C25855E51B96E6B900D686F6 /* StartScreen_vc.m in Sources */ = {isa = PBXBuildFile; fileRef = C25855E41B96E6B900D686F6 /* StartScreen_vc.m */; };
+		C2670BC11BDA4DD500926F91 /* Overview_tvc.m in Sources */ = {isa = PBXBuildFile; fileRef = C2670BC01BDA4DD500926F91 /* Overview_tvc.m */; };
+		C2670BC41BDA647800926F91 /* Title_vc.m in Sources */ = {isa = PBXBuildFile; fileRef = C2670BC31BDA647800926F91 /* Title_vc.m */; };
+		C27494E61BE2710B00DD6905 /* LocationDescription_vc.m in Sources */ = {isa = PBXBuildFile; fileRef = C27494E51BE2710B00DD6905 /* LocationDescription_vc.m */; };
 		C276E0551B8A5C3E007346DB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C276E0541B8A5C3E007346DB /* main.m */; };
 		C276E0581B8A5C3E007346DB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C276E0571B8A5C3E007346DB /* AppDelegate.m */; };
 		C276E05E1B8A5C3E007346DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C276E05C1B8A5C3E007346DB /* Main.storyboard */; };
@@ -39,23 +37,26 @@
 		C276E0631B8A5C3E007346DB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C276E0611B8A5C3E007346DB /* LaunchScreen.xib */; };
 		C276E06F1B8A5C3F007346DB /* miFoodAppTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C276E06E1B8A5C3F007346DB /* miFoodAppTestTests.m */; };
 		C276E0B71B8A8076007346DB /* miFoodLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = C276E0B61B8A8076007346DB /* miFoodLogo.png */; };
+		C27ADB061BDD458B00D91FD8 /* Image_vc.m in Sources */ = {isa = PBXBuildFile; fileRef = C27ADB051BDD458B00D91FD8 /* Image_vc.m */; };
 		C27C37371BA0733800113CCF /* Preview_vc.m in Sources */ = {isa = PBXBuildFile; fileRef = C27C37361BA0733800113CCF /* Preview_vc.m */; };
 		C27C37391BA079BF00113CCF /* AvatarPlaceholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C27C37381BA079BF00113CCF /* AvatarPlaceholder@2x.png */; };
 		C27C373B1BA07A5900113CCF /* 5starsgray.png in Resources */ = {isa = PBXBuildFile; fileRef = C27C373A1BA07A5900113CCF /* 5starsgray.png */; };
 		C27F019F1BCF7B7A000AFD8B /* RecipesDetails_vc.m in Sources */ = {isa = PBXBuildFile; fileRef = C27F019E1BCF7B7A000AFD8B /* RecipesDetails_vc.m */; };
 		C27F01A31BD0287F000AFD8B /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C27F01A21BD0287F000AFD8B /* CHTCollectionViewWaterfallLayout.m */; };
+		C2834F1C1BDFCD54002BB736 /* Description_vc.m in Sources */ = {isa = PBXBuildFile; fileRef = C2834F1B1BDFCD54002BB736 /* Description_vc.m */; };
+		C285B3011BE16C8E0016F5B2 /* MainDetails_vc.m in Sources */ = {isa = PBXBuildFile; fileRef = C285B3001BE16C8E0016F5B2 /* MainDetails_vc.m */; };
 		C2865ACE1BC4EDEA00CBBFAE /* Left Arrow-32.png in Resources */ = {isa = PBXBuildFile; fileRef = C2865ACB1BC4EDEA00CBBFAE /* Left Arrow-32.png */; };
 		C2865ACF1BC4EDEA00CBBFAE /* Next-24-2.png in Resources */ = {isa = PBXBuildFile; fileRef = C2865ACC1BC4EDEA00CBBFAE /* Next-24-2.png */; };
 		C2865AD01BC4EDEA00CBBFAE /* Next-24.png in Resources */ = {isa = PBXBuildFile; fileRef = C2865ACD1BC4EDEA00CBBFAE /* Next-24.png */; };
 		C2865AD21BC4EF9A00CBBFAE /* Left Arrow-26.png in Resources */ = {isa = PBXBuildFile; fileRef = C2865AD11BC4EF9A00CBBFAE /* Left Arrow-26.png */; };
 		C2865AD41BC57DC000CBBFAE /* Plus Math-26.png in Resources */ = {isa = PBXBuildFile; fileRef = C2865AD31BC57DC000CBBFAE /* Plus Math-26.png */; };
+		C28F3E901BD52475006FF12A /* RecipesHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C28F3E8F1BD52475006FF12A /* RecipesHeaderView.m */; };
 		C29555E01B94EEA200DABC13 /* AddressSearch_vc.m in Sources */ = {isa = PBXBuildFile; fileRef = C29555DF1B94EEA200DABC13 /* AddressSearch_vc.m */; };
 		C29555E31B94EEC100DABC13 /* AddressSearch_cell.m in Sources */ = {isa = PBXBuildFile; fileRef = C29555E21B94EEC100DABC13 /* AddressSearch_cell.m */; };
 		C2A1AE791B998CCF0058C74C /* miFood Logo_v1.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A1AE781B998CCF0058C74C /* miFood Logo_v1.png */; };
 		C2A1AE7B1B99984B0058C74C /* imagePlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A1AE7A1B99984B0058C74C /* imagePlaceholder.png */; };
 		C2A1AE7D1B9999460058C74C /* imageLargePlaceholder.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A1AE7C1B9999460058C74C /* imageLargePlaceholder.png */; };
 		C2A1AE7F1B99999A0058C74C /* CameraIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A1AE7E1B99999A0058C74C /* CameraIcon.png */; };
-		C2A1AE821B99A9170058C74C /* ImageAddress_overview.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A1AE811B99A9170058C74C /* ImageAddress_overview.m */; };
 		C2A1AE851B99B2640058C74C /* MapView_vc.m in Sources */ = {isa = PBXBuildFile; fileRef = C2A1AE841B99B2640058C74C /* MapView_vc.m */; };
 		C2A1AE871B99C34E0058C74C /* About-50.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A1AE861B99C34E0058C74C /* About-50.png */; };
 		C2A1AE891B99C3570058C74C /* Signpost-50.png in Resources */ = {isa = PBXBuildFile; fileRef = C2A1AE881B99C3570058C74C /* Signpost-50.png */; };
@@ -70,14 +71,6 @@
 		C2D432EE1BCEA8A500C22974 /* RecipesOverview_cell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D432ED1BCEA8A500C22974 /* RecipesOverview_cell.m */; };
 		C2D432F11BCEA8EC00C22974 /* RecipesOverview_cvc.m in Sources */ = {isa = PBXBuildFile; fileRef = C2D432F01BCEA8EC00C22974 /* RecipesOverview_cvc.m */; };
 		C2DBBB241B8CCE2800E4BF0C /* Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DBBB231B8CCE2800E4BF0C /* Singleton.m */; };
-		C2DBBB271B8CD84B00E4BF0C /* FoodOverview_tvc.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DBBB261B8CD84B00E4BF0C /* FoodOverview_tvc.m */; };
-		C2DBBB3E1B8CD91D00E4BF0C /* ELCAlbumPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DBBB2E1B8CD91D00E4BF0C /* ELCAlbumPickerController.m */; };
-		C2DBBB3F1B8CD91D00E4BF0C /* ELCAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DBBB301B8CD91D00E4BF0C /* ELCAsset.m */; };
-		C2DBBB401B8CD91D00E4BF0C /* ELCAssetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DBBB321B8CD91D00E4BF0C /* ELCAssetCell.m */; };
-		C2DBBB411B8CD91D00E4BF0C /* ELCAssetTablePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DBBB361B8CD91D00E4BF0C /* ELCAssetTablePicker.m */; };
-		C2DBBB421B8CD91D00E4BF0C /* ELCImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DBBB381B8CD91D00E4BF0C /* ELCImagePickerController.m */; };
-		C2DBBB431B8CD91D00E4BF0C /* ELCConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DBBB3B1B8CD91D00E4BF0C /* ELCConsole.m */; };
-		C2DBBB441B8CD91D00E4BF0C /* ELCOverlayImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2DBBB3D1B8CD91D00E4BF0C /* ELCOverlayImageView.m */; };
 		C2DBBB471B8CE75400E4BF0C /* ThickRoundIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C2DBBB461B8CE75400E4BF0C /* ThickRoundIcon.png */; };
 		C2E90D2E1BAB149F005973D5 /* OrderPreview_vc.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E90D2D1BAB149F005973D5 /* OrderPreview_vc.m */; };
 		C2EF8DA81BA8768B0048DEFB /* SelectDate_vc.m in Sources */ = {isa = PBXBuildFile; fileRef = C2EF8DA71BA8768B0048DEFB /* SelectDate_vc.m */; };
@@ -110,17 +103,7 @@
 		24ED548636D0558C07BF087A /* libPods-miFoodAppTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-miFoodAppTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		79E06EC21470D83530D15DD8 /* Pods-miFoodAppTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-miFoodAppTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-miFoodAppTest/Pods-miFoodAppTest.release.xcconfig"; sourceTree = "<group>"; };
 		C201E9221B9725C5001AA413 /* lightgreyBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lightgreyBackground.jpg; sourceTree = "<group>"; };
-		C201E92C1B973936001AA413 /* FoodType_vc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodType_vc.h; sourceTree = "<group>"; };
-		C201E92D1B973936001AA413 /* FoodType_vc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodType_vc.m; sourceTree = "<group>"; };
-		C201E9321B9854BD001AA413 /* TitleInput_vc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleInput_vc.h; sourceTree = "<group>"; };
-		C201E9331B9854BD001AA413 /* TitleInput_vc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleInput_vc.m; sourceTree = "<group>"; };
-		C201E9351B9854CF001AA413 /* DescriptionInput_vc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptionInput_vc.h; sourceTree = "<group>"; };
-		C201E9361B9854CF001AA413 /* DescriptionInput_vc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptionInput_vc.m; sourceTree = "<group>"; };
-		C201E9381B9854E7001AA413 /* PriceQuantityInput_vc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceQuantityInput_vc.h; sourceTree = "<group>"; };
-		C201E9391B9854E7001AA413 /* PriceQuantityInput_vc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceQuantityInput_vc.m; sourceTree = "<group>"; };
 		C201E93E1B986C93001AA413 /* DateTimeIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DateTimeIcon.png; sourceTree = "<group>"; };
-		C201E9401B986D4D001AA413 /* DateInput_vc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateInput_vc.h; sourceTree = "<group>"; };
-		C201E9411B986D4D001AA413 /* DateInput_vc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateInput_vc.m; sourceTree = "<group>"; };
 		C20748FF1BA15205001981A9 /* penEgg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = penEgg.jpg; sourceTree = "<group>"; };
 		C20C3E701BB1AAD300D29AE8 /* Watch-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Watch-25.png"; sourceTree = "<group>"; };
 		C20C3E721BB1AC0D00D29AE8 /* Location-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Location-25.png"; sourceTree = "<group>"; };
@@ -142,6 +125,12 @@
 		C2528FD11B9F08C30069691D /* Login_vc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Login_vc.m; sourceTree = "<group>"; };
 		C25855E31B96E6B900D686F6 /* StartScreen_vc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScreen_vc.h; sourceTree = "<group>"; };
 		C25855E41B96E6B900D686F6 /* StartScreen_vc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScreen_vc.m; sourceTree = "<group>"; };
+		C2670BBF1BDA4DD500926F91 /* Overview_tvc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Overview_tvc.h; sourceTree = "<group>"; };
+		C2670BC01BDA4DD500926F91 /* Overview_tvc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Overview_tvc.m; sourceTree = "<group>"; };
+		C2670BC21BDA647800926F91 /* Title_vc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Title_vc.h; sourceTree = "<group>"; };
+		C2670BC31BDA647800926F91 /* Title_vc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Title_vc.m; sourceTree = "<group>"; };
+		C27494E41BE2710B00DD6905 /* LocationDescription_vc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationDescription_vc.h; sourceTree = "<group>"; };
+		C27494E51BE2710B00DD6905 /* LocationDescription_vc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationDescription_vc.m; sourceTree = "<group>"; };
 		C276E04F1B8A5C3E007346DB /* miFoodAppTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = miFoodAppTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C276E0531B8A5C3E007346DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C276E0541B8A5C3E007346DB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -154,6 +143,8 @@
 		C276E06D1B8A5C3F007346DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C276E06E1B8A5C3F007346DB /* miFoodAppTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = miFoodAppTestTests.m; sourceTree = "<group>"; };
 		C276E0B61B8A8076007346DB /* miFoodLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = miFoodLogo.png; sourceTree = "<group>"; };
+		C27ADB041BDD458B00D91FD8 /* Image_vc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image_vc.h; sourceTree = "<group>"; };
+		C27ADB051BDD458B00D91FD8 /* Image_vc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image_vc.m; sourceTree = "<group>"; };
 		C27C37351BA0733800113CCF /* Preview_vc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preview_vc.h; sourceTree = "<group>"; };
 		C27C37361BA0733800113CCF /* Preview_vc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preview_vc.m; sourceTree = "<group>"; };
 		C27C37381BA079BF00113CCF /* AvatarPlaceholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AvatarPlaceholder@2x.png"; sourceTree = "<group>"; };
@@ -162,11 +153,17 @@
 		C27F019E1BCF7B7A000AFD8B /* RecipesDetails_vc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipesDetails_vc.m; sourceTree = "<group>"; };
 		C27F01A11BD0287F000AFD8B /* CHTCollectionViewWaterfallLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHTCollectionViewWaterfallLayout.h; sourceTree = "<group>"; };
 		C27F01A21BD0287F000AFD8B /* CHTCollectionViewWaterfallLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHTCollectionViewWaterfallLayout.m; sourceTree = "<group>"; };
+		C2834F1A1BDFCD54002BB736 /* Description_vc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Description_vc.h; sourceTree = "<group>"; };
+		C2834F1B1BDFCD54002BB736 /* Description_vc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Description_vc.m; sourceTree = "<group>"; };
+		C285B2FF1BE16C8E0016F5B2 /* MainDetails_vc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainDetails_vc.h; sourceTree = "<group>"; };
+		C285B3001BE16C8E0016F5B2 /* MainDetails_vc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainDetails_vc.m; sourceTree = "<group>"; };
 		C2865ACB1BC4EDEA00CBBFAE /* Left Arrow-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Left Arrow-32.png"; sourceTree = "<group>"; };
 		C2865ACC1BC4EDEA00CBBFAE /* Next-24-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Next-24-2.png"; sourceTree = "<group>"; };
 		C2865ACD1BC4EDEA00CBBFAE /* Next-24.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Next-24.png"; sourceTree = "<group>"; };
 		C2865AD11BC4EF9A00CBBFAE /* Left Arrow-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Left Arrow-26.png"; sourceTree = "<group>"; };
 		C2865AD31BC57DC000CBBFAE /* Plus Math-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Plus Math-26.png"; sourceTree = "<group>"; };
+		C28F3E8E1BD52475006FF12A /* RecipesHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecipesHeaderView.h; sourceTree = "<group>"; };
+		C28F3E8F1BD52475006FF12A /* RecipesHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipesHeaderView.m; sourceTree = "<group>"; };
 		C29555DE1B94EEA200DABC13 /* AddressSearch_vc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressSearch_vc.h; sourceTree = "<group>"; };
 		C29555DF1B94EEA200DABC13 /* AddressSearch_vc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressSearch_vc.m; sourceTree = "<group>"; };
 		C29555E11B94EEC100DABC13 /* AddressSearch_cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressSearch_cell.h; sourceTree = "<group>"; };
@@ -175,8 +172,6 @@
 		C2A1AE7A1B99984B0058C74C /* imagePlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imagePlaceholder.png; sourceTree = "<group>"; };
 		C2A1AE7C1B9999460058C74C /* imageLargePlaceholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageLargePlaceholder.png; sourceTree = "<group>"; };
 		C2A1AE7E1B99999A0058C74C /* CameraIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CameraIcon.png; sourceTree = "<group>"; };
-		C2A1AE801B99A9170058C74C /* ImageAddress_overview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageAddress_overview.h; sourceTree = "<group>"; };
-		C2A1AE811B99A9170058C74C /* ImageAddress_overview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageAddress_overview.m; sourceTree = "<group>"; };
 		C2A1AE831B99B2640058C74C /* MapView_vc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView_vc.h; sourceTree = "<group>"; };
 		C2A1AE841B99B2640058C74C /* MapView_vc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView_vc.m; sourceTree = "<group>"; };
 		C2A1AE861B99C34E0058C74C /* About-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "About-50.png"; sourceTree = "<group>"; };
@@ -196,25 +191,6 @@
 		C2D432F01BCEA8EC00C22974 /* RecipesOverview_cvc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecipesOverview_cvc.m; sourceTree = "<group>"; };
 		C2DBBB221B8CCE2800E4BF0C /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		C2DBBB231B8CCE2800E4BF0C /* Singleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Singleton.m; sourceTree = "<group>"; };
-		C2DBBB251B8CD84B00E4BF0C /* FoodOverview_tvc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodOverview_tvc.h; sourceTree = "<group>"; };
-		C2DBBB261B8CD84B00E4BF0C /* FoodOverview_tvc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FoodOverview_tvc.m; sourceTree = "<group>"; };
-		C2DBBB2D1B8CD91D00E4BF0C /* ELCAlbumPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAlbumPickerController.h; sourceTree = "<group>"; };
-		C2DBBB2E1B8CD91D00E4BF0C /* ELCAlbumPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAlbumPickerController.m; sourceTree = "<group>"; };
-		C2DBBB2F1B8CD91D00E4BF0C /* ELCAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAsset.h; sourceTree = "<group>"; };
-		C2DBBB301B8CD91D00E4BF0C /* ELCAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAsset.m; sourceTree = "<group>"; };
-		C2DBBB311B8CD91D00E4BF0C /* ELCAssetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetCell.h; sourceTree = "<group>"; };
-		C2DBBB321B8CD91D00E4BF0C /* ELCAssetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAssetCell.m; sourceTree = "<group>"; };
-		C2DBBB331B8CD91D00E4BF0C /* ELCAssetSelectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetSelectionDelegate.h; sourceTree = "<group>"; };
-		C2DBBB341B8CD91D00E4BF0C /* ELCAssetPickerFilterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetPickerFilterDelegate.h; sourceTree = "<group>"; };
-		C2DBBB351B8CD91D00E4BF0C /* ELCAssetTablePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCAssetTablePicker.h; sourceTree = "<group>"; };
-		C2DBBB361B8CD91D00E4BF0C /* ELCAssetTablePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCAssetTablePicker.m; sourceTree = "<group>"; };
-		C2DBBB371B8CD91D00E4BF0C /* ELCImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCImagePickerController.h; sourceTree = "<group>"; };
-		C2DBBB381B8CD91D00E4BF0C /* ELCImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCImagePickerController.m; sourceTree = "<group>"; };
-		C2DBBB391B8CD91D00E4BF0C /* ELCImagePickerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCImagePickerHeader.h; sourceTree = "<group>"; };
-		C2DBBB3A1B8CD91D00E4BF0C /* ELCConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCConsole.h; sourceTree = "<group>"; };
-		C2DBBB3B1B8CD91D00E4BF0C /* ELCConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCConsole.m; sourceTree = "<group>"; };
-		C2DBBB3C1B8CD91D00E4BF0C /* ELCOverlayImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ELCOverlayImageView.h; sourceTree = "<group>"; };
-		C2DBBB3D1B8CD91D00E4BF0C /* ELCOverlayImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ELCOverlayImageView.m; sourceTree = "<group>"; };
 		C2DBBB461B8CE75400E4BF0C /* ThickRoundIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ThickRoundIcon.png; sourceTree = "<group>"; };
 		C2E90D2C1BAB149F005973D5 /* OrderPreview_vc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderPreview_vc.h; sourceTree = "<group>"; };
 		C2E90D2D1BAB149F005973D5 /* OrderPreview_vc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderPreview_vc.m; sourceTree = "<group>"; };
@@ -279,24 +255,26 @@
 		C201E9311B985491001AA413 /* Create Food */ = {
 			isa = PBXGroup;
 			children = (
-				C201E9401B986D4D001AA413 /* DateInput_vc.h */,
-				C201E9411B986D4D001AA413 /* DateInput_vc.m */,
-				C201E9321B9854BD001AA413 /* TitleInput_vc.h */,
-				C201E9331B9854BD001AA413 /* TitleInput_vc.m */,
-				C201E9351B9854CF001AA413 /* DescriptionInput_vc.h */,
-				C201E9361B9854CF001AA413 /* DescriptionInput_vc.m */,
-				C201E9381B9854E7001AA413 /* PriceQuantityInput_vc.h */,
-				C201E9391B9854E7001AA413 /* PriceQuantityInput_vc.m */,
-				C2A1AE801B99A9170058C74C /* ImageAddress_overview.h */,
-				C2A1AE811B99A9170058C74C /* ImageAddress_overview.m */,
+				C2670BBF1BDA4DD500926F91 /* Overview_tvc.h */,
+				C2670BC01BDA4DD500926F91 /* Overview_tvc.m */,
+				C27C37351BA0733800113CCF /* Preview_vc.h */,
+				C27C37361BA0733800113CCF /* Preview_vc.m */,
+				C2670BC21BDA647800926F91 /* Title_vc.h */,
+				C2670BC31BDA647800926F91 /* Title_vc.m */,
+				C27ADB041BDD458B00D91FD8 /* Image_vc.h */,
+				C27ADB051BDD458B00D91FD8 /* Image_vc.m */,
+				C2834F1A1BDFCD54002BB736 /* Description_vc.h */,
+				C2834F1B1BDFCD54002BB736 /* Description_vc.m */,
+				C285B2FF1BE16C8E0016F5B2 /* MainDetails_vc.h */,
+				C285B3001BE16C8E0016F5B2 /* MainDetails_vc.m */,
+				C27494E41BE2710B00DD6905 /* LocationDescription_vc.h */,
+				C27494E51BE2710B00DD6905 /* LocationDescription_vc.m */,
 				C2A1AE831B99B2640058C74C /* MapView_vc.h */,
 				C2A1AE841B99B2640058C74C /* MapView_vc.m */,
 				C29555DE1B94EEA200DABC13 /* AddressSearch_vc.h */,
 				C29555DF1B94EEA200DABC13 /* AddressSearch_vc.m */,
 				C29555E11B94EEC100DABC13 /* AddressSearch_cell.h */,
 				C29555E21B94EEC100DABC13 /* AddressSearch_cell.m */,
-				C27C37351BA0733800113CCF /* Preview_vc.h */,
-				C27C37361BA0733800113CCF /* Preview_vc.m */,
 			);
 			name = "Create Food";
 			sourceTree = "<group>";
@@ -368,7 +346,6 @@
 				C201E9311B985491001AA413 /* Create Food */,
 				C2F7EA0A1BA696E800AAE81A /* Find Food */,
 				C2853C0C1BCE65B8001647DC /* Recipes */,
-				C2DBBB1D1B8CCD4C00E4BF0C /* OldFoodOverview */,
 				C276E0521B8A5C3E007346DB /* Supporting Files */,
 			);
 			path = miFoodAppTest;
@@ -453,6 +430,8 @@
 				C2D432F01BCEA8EC00C22974 /* RecipesOverview_cvc.m */,
 				C2D432EC1BCEA8A500C22974 /* RecipesOverview_cell.h */,
 				C2D432ED1BCEA8A500C22974 /* RecipesOverview_cell.m */,
+				C28F3E8E1BD52475006FF12A /* RecipesHeaderView.h */,
+				C28F3E8F1BD52475006FF12A /* RecipesHeaderView.m */,
 				C27F019D1BCF7B7A000AFD8B /* RecipesDetails_vc.h */,
 				C27F019E1BCF7B7A000AFD8B /* RecipesDetails_vc.m */,
 			);
@@ -474,17 +453,6 @@
 			name = "Map Views";
 			sourceTree = "<group>";
 		};
-		C2DBBB1D1B8CCD4C00E4BF0C /* OldFoodOverview */ = {
-			isa = PBXGroup;
-			children = (
-				C201E92C1B973936001AA413 /* FoodType_vc.h */,
-				C201E92D1B973936001AA413 /* FoodType_vc.m */,
-				C2DBBB251B8CD84B00E4BF0C /* FoodOverview_tvc.h */,
-				C2DBBB261B8CD84B00E4BF0C /* FoodOverview_tvc.m */,
-			);
-			name = OldFoodOverview;
-			sourceTree = "<group>";
-		};
 		C2DBBB211B8CCDFB00E4BF0C /* Start Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -502,33 +470,8 @@
 				C27F01A01BD02865000AFD8B /* CHTCollectionView */,
 				C2528FC11B9EFFFA0069691D /* HHAlertView */,
 				C20C9C901B933C1B00A2E707 /* HSDatePicker */,
-				C2DBBB2C1B8CD90700E4BF0C /* ELCImagePicker */,
 			);
 			name = SDKs;
-			sourceTree = "<group>";
-		};
-		C2DBBB2C1B8CD90700E4BF0C /* ELCImagePicker */ = {
-			isa = PBXGroup;
-			children = (
-				C2DBBB2D1B8CD91D00E4BF0C /* ELCAlbumPickerController.h */,
-				C2DBBB2E1B8CD91D00E4BF0C /* ELCAlbumPickerController.m */,
-				C2DBBB2F1B8CD91D00E4BF0C /* ELCAsset.h */,
-				C2DBBB301B8CD91D00E4BF0C /* ELCAsset.m */,
-				C2DBBB311B8CD91D00E4BF0C /* ELCAssetCell.h */,
-				C2DBBB321B8CD91D00E4BF0C /* ELCAssetCell.m */,
-				C2DBBB331B8CD91D00E4BF0C /* ELCAssetSelectionDelegate.h */,
-				C2DBBB341B8CD91D00E4BF0C /* ELCAssetPickerFilterDelegate.h */,
-				C2DBBB351B8CD91D00E4BF0C /* ELCAssetTablePicker.h */,
-				C2DBBB361B8CD91D00E4BF0C /* ELCAssetTablePicker.m */,
-				C2DBBB371B8CD91D00E4BF0C /* ELCImagePickerController.h */,
-				C2DBBB381B8CD91D00E4BF0C /* ELCImagePickerController.m */,
-				C2DBBB391B8CD91D00E4BF0C /* ELCImagePickerHeader.h */,
-				C2DBBB3A1B8CD91D00E4BF0C /* ELCConsole.h */,
-				C2DBBB3B1B8CD91D00E4BF0C /* ELCConsole.m */,
-				C2DBBB3C1B8CD91D00E4BF0C /* ELCOverlayImageView.h */,
-				C2DBBB3D1B8CD91D00E4BF0C /* ELCOverlayImageView.m */,
-			);
-			name = ELCImagePicker;
 			sourceTree = "<group>";
 		};
 		C2DBBB451B8CE73400E4BF0C /* Food Input Masks */ = {
@@ -605,6 +548,7 @@
 				C276E04C1B8A5C3E007346DB /* Frameworks */,
 				C276E04D1B8A5C3E007346DB /* Resources */,
 				4CC33254270F85F9F31D7AF8 /* Copy Pods Resources */,
+				31E5E3F34883ABE4E60B30E4 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -742,6 +686,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		31E5E3F34883ABE4E60B30E4 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-miFoodAppTest/Pods-miFoodAppTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4A1A0F801A0EE10140BFA092 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -809,42 +768,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C201E9341B9854BD001AA413 /* TitleInput_vc.m in Sources */,
 				C27C37371BA0733800113CCF /* Preview_vc.m in Sources */,
+				C2670BC11BDA4DD500926F91 /* Overview_tvc.m in Sources */,
 				C2EF8DA81BA8768B0048DEFB /* SelectDate_vc.m in Sources */,
-				C2DBBB3F1B8CD91D00E4BF0C /* ELCAsset.m in Sources */,
+				C27494E61BE2710B00DD6905 /* LocationDescription_vc.m in Sources */,
 				C25855E51B96E6B900D686F6 /* StartScreen_vc.m in Sources */,
-				C2DBBB421B8CD91D00E4BF0C /* ELCImagePickerController.m in Sources */,
-				C201E9421B986D4D001AA413 /* DateInput_vc.m in Sources */,
-				C201E9371B9854CF001AA413 /* DescriptionInput_vc.m in Sources */,
+				C27ADB061BDD458B00D91FD8 /* Image_vc.m in Sources */,
 				C2F7EA161BA71E2800AAE81A /* Results_tvc.m in Sources */,
 				C2F984FE1BA75F5300BBF8FC /* Results_cell.m in Sources */,
+				C2834F1C1BDFCD54002BB736 /* Description_vc.m in Sources */,
 				C276E0581B8A5C3E007346DB /* AppDelegate.m in Sources */,
 				C29555E31B94EEC100DABC13 /* AddressSearch_cell.m in Sources */,
-				C2A1AE821B99A9170058C74C /* ImageAddress_overview.m in Sources */,
 				C2CC2FE91BABEFA700818138 /* Constants.m in Sources */,
-				C2DBBB401B8CD91D00E4BF0C /* ELCAssetCell.m in Sources */,
 				C2E90D2E1BAB149F005973D5 /* OrderPreview_vc.m in Sources */,
 				C2528FD21B9F08C30069691D /* Login_vc.m in Sources */,
-				C201E93A1B9854E7001AA413 /* PriceQuantityInput_vc.m in Sources */,
-				C2DBBB3E1B8CD91D00E4BF0C /* ELCAlbumPickerController.m in Sources */,
+				C285B3011BE16C8E0016F5B2 /* MainDetails_vc.m in Sources */,
 				C27F01A31BD0287F000AFD8B /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				C2D432F11BCEA8EC00C22974 /* RecipesOverview_cvc.m in Sources */,
-				C2DBBB441B8CD91D00E4BF0C /* ELCOverlayImageView.m in Sources */,
 				C2F7EA0D1BA6971C00AAE81A /* SearchCIty_vc.m in Sources */,
 				C2D432EE1BCEA8A500C22974 /* RecipesOverview_cell.m in Sources */,
 				C276E0551B8A5C3E007346DB /* main.m in Sources */,
 				C20C9C941B933C3300A2E707 /* HSDatePickerViewController.m in Sources */,
 				C27F019F1BCF7B7A000AFD8B /* RecipesDetails_vc.m in Sources */,
-				C2DBBB271B8CD84B00E4BF0C /* FoodOverview_tvc.m in Sources */,
+				C28F3E901BD52475006FF12A /* RecipesHeaderView.m in Sources */,
 				C2DBBB241B8CCE2800E4BF0C /* Singleton.m in Sources */,
 				C29555E01B94EEA200DABC13 /* AddressSearch_vc.m in Sources */,
 				C2F7EA101BA6974800AAE81A /* SearchCity_cell.m in Sources */,
-				C2DBBB431B8CD91D00E4BF0C /* ELCConsole.m in Sources */,
-				C201E92E1B973936001AA413 /* FoodType_vc.m in Sources */,
 				C2A1AE851B99B2640058C74C /* MapView_vc.m in Sources */,
-				C2DBBB411B8CD91D00E4BF0C /* ELCAssetTablePicker.m in Sources */,
 				C2528FC41B9F00170069691D /* HHAlertView.m in Sources */,
+				C2670BC41BDA647800926F91 /* Title_vc.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -973,6 +925,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = miFoodAppTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -1044,6 +997,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = miFoodAppTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;

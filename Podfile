@@ -10,6 +10,8 @@ pod 'ParseFacebookUtilsV4', '~> 1.8'
 pod 'ParseUI', '~> 1.1'
 pod 'MBProgressHUD', '~> 0.9'
 pod 'JTCalendar', '~> 2.1'
+pod 'AFNetworking', '~> 2.6'
+pod 'APParallaxHeader', '~> 0.1'
 
 end
 

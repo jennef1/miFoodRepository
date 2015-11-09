@@ -37,9 +37,10 @@
 
 // mapView button
 @property (strong, nonatomic) IBOutlet UIButton     *locationButton;
-@property (strong, nonatomic) IBOutlet UIImageView  *locButConfirmIMV;
+@property (strong, nonatomic) IBOutlet UIView       *locButHubView;
 @property (strong, nonatomic) IBOutlet UILabel      *locButAddressTitle;
 @property (strong, nonatomic) IBOutlet UILabel      *locButAddressSubTitle;
+@property (strong, nonatomic) UIImageView *hudImageViewTick;
 
 // saving items
 @property (strong, nonatomic) NSString *addressCity;
