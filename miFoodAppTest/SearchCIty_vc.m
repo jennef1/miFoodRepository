@@ -61,7 +61,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - TableView DataSource / Delegate
@@ -116,6 +115,7 @@
                                       filter:filter
                                     callback:^(NSArray *results, NSError *error) {
                                         if (error != nil) {
+                                            hud.hidden = YES;
                                             NSLog(@"Autocomplete error %@", [error localizedDescription]);
                                             return;
                                         }
@@ -149,6 +149,7 @@
                                     
                                                 } else {
                                                     NSLog(@"No place details for %@", placeID);
+                                                    hud.hidden = YES;
                                                 }
                                             }];
                                             
@@ -156,7 +157,6 @@
                                         }
                                     }];
         
-        // TODO: must display "Powered by Google"...
         
         //    NSString *baseURL = @"http://maps.googleapis.com/maps/api/geocode/json?";
         //    NSString *fullURL = [NSString stringWithFormat:@"%@address=%@", baseURL, addressToSegue]; // &sensor=false

@@ -48,9 +48,10 @@
     [self.searchBox.layer setCornerRadius:4];
     [self.searchBox       setClipsToBounds:YES];
     
-//    [self.locationNoBUTTNyetTF.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
-//    [self.locationNoBUTTNyetTF.layer setBorderWidth:0.6];
-//    [self.locationNoBUTTNyetTF.layer setCornerRadius:4];
+    [self.currentLocTF.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
+    [self.currentLocTF.layer setBorderWidth:0.6];
+    [self.currentLocTF.layer setCornerRadius:4];
+    [self.currentLocTF       setClipsToBounds:YES];
     
     self.searchTableView.contentInset = UIEdgeInsetsZero;
     
@@ -91,6 +92,9 @@
 
 - (void)textChanged:(UITextField *)textField{
     
+    // TODO: when tipping and undo quickly HUD remains but can't select anything...
+    
+    
      // show search result only after 3 characters entered
     if (textField.text.length > 2) {
         
@@ -120,6 +124,7 @@
         
                                         [self.placesClient lookUpPlaceID:placeID callback:^(GMSPlace *place, NSError *error) {
                                             if (error != nil) {
+                                                hud.hidden = YES;
                                                 NSLog(@"Place Details error %@", [error localizedDescription]);
                                                 return;
                                             }
@@ -139,6 +144,7 @@
                                                 [self.searchTableView           reloadData];
                                                 
                                             } else {
+                                                hud.hidden = YES;
                                                 NSLog(@"No place details for %@", placeID);
                                             }
                                         }];
@@ -146,6 +152,10 @@
                                     }
                                 }];
     }
+}
+
+- (IBAction)currentLocationPressed:(id)sender {
+    // tbd what to do here...
 }
 
 #pragma mark - TableViewFooter (Google logo)

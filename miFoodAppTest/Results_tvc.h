@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSString *dateOnlyForQuery;
 
 // navigation
+- (IBAction)showMapResultsPressed:(id)sender;
 - (IBAction)backPressed:(id)sender;
 
 @end

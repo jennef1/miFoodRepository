@@ -16,13 +16,14 @@
 @property (strong, nonatomic) UILabel *charactersLeftLabel;
 @property (assign, nonatomic) int maxTextLen;
 
-
 // navigation
-@property (nonatomic, strong) NSString *segueIDString;
-
+@property (strong, nonatomic) NSString *segueIDString;
+@property (strong, nonatomic) UIButton *nextButtonKB;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *nextButton;
 - (IBAction)backPressed:(id)sender;
 - (IBAction)nextPressed:(id)sender;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *nextButton;
+
+
 
 - (IBAction)seePreviousMenusPressed:(id)sender;
 

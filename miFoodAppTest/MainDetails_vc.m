@@ -15,7 +15,7 @@
 
 @implementation MainDetails_vc
 
-@synthesize selectedDate, selectedTime, timeCounter, initialTime, menuCounter, foodPrice;
+@synthesize selectedDate, selectedTime, timeCounter, initialTime, menuCounter, foodPrice, backButtonKB;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,19 +36,16 @@
     } else {
         self.selectedDate = singlDate;
     }
-    
     if (singlTime > 0) {
         self.initialTime = singlTime;
     } else {
         self.initialTime = 11.5;
     }
-    
     if (singlMenuCount > 0) {
         self.menuCounter = singlMenuCount;
     } else {
         self.menuCounter = 5;
     }
-    
     if (singlPrice > 0) {
         self.priceTF.text = [NSString stringWithFormat:@"%.2f", singlPrice];
     } else {
@@ -75,12 +72,45 @@
     [self configureLabelsWithDate:self.selectedDate];
     [self configureLabelsWithTimenumber:self.initialTime];
     [self registerForKeyboardNotifications];
+    [self.scrollView setDelegate:self];
     self.menuAmount.text = [NSString stringWithFormat:@"%i", self.menuCounter];
-    
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (void)viewWillAppear:(BOOL)animated {
+    
+    // next Button on bottom
+    UIColor *buttonColor = [UIColor colorWithRed:(255/255.0) green:(211/255.0) blue:(41/255.0) alpha:1];
+    CGRect backbtnFrame  = CGRectMake(0, (CGRectGetHeight(self.view.bounds) - 50) , self.view.frame.size.width, 50);
+    self.backButtonKB    = [[UIButton alloc]initWithFrame:backbtnFrame];
+    [self.backButtonKB setBackgroundColor: buttonColor];
+    [self.backButtonKB setTitle:@"done" forState:UIControlStateNormal];
+    [self.backButtonKB addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    CGRect btnIndicatorFrame  = CGRectMake(20, (backbtnFrame.size.height/2 - 10), 20, 20);
+    UIImageView *btnIndicator = [[UIImageView alloc]initWithFrame:btnIndicatorFrame];
+    btnIndicator.image        = [UIImage imageNamed:@"arrowBackWhite"];
+    [self.backButtonKB addSubview: btnIndicator];
+    
+    [self.view addSubview:self.backButtonKB];
+    [self.scrollView setContentOffset:CGPointMake(0, 1) animated:NO];
+    
+    // price KeyboardAccessoryButton
+    UIColor *backgrndClr  = [UIColor colorWithRed:(224/255.0) green:(226/255.0) blue:(234/255.0) alpha:1];
+    CGRect keyb_acsFrame  = CGRectMake(0, 0, self.view.frame.size.width, 50);
+    UIButton *keyb_acsBtn = [[UIButton alloc]initWithFrame:keyb_acsFrame];
+    [keyb_acsBtn setBackgroundColor:backgrndClr];
+    [keyb_acsBtn setTitle:@"close" forState:UIControlStateNormal];
+    [keyb_acsBtn addTarget:self action:@selector(hideKeyboardForPriceTF:) forControlEvents:UIControlEventTouchUpInside];
+    [self.priceTF setInputAccessoryView:keyb_acsBtn];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    CGRect frame    = self.backButtonKB.frame;
+    frame.origin.y  = self.view.frame.size.height - self.backButtonKB.frame.size.height; // scrollView.contentOffset.y + 
+    self.backButtonKB.frame = frame;
+    
+    [self.view bringSubviewToFront:self.backButtonKB];
 }
 
 #pragma mark - DateConfig
@@ -298,4 +328,5 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
+
 @end

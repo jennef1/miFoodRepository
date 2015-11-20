@@ -16,17 +16,41 @@
 
 @implementation Image_vc
 
-@synthesize scrollView ,contentView, selectImage, emptyViewLabel, emptyView0, imageView1, imageView2, imageView3, segueIDString, newMedia, imageSelected;
+@synthesize scrollView ,contentView, selectImage, emptyViewLabel, emptyView0, imageView1, imageView2, imageView3, segueIDString, newMedia, imageSelected, nextButtonKB;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // TODO: move to tapped View
+}
+
+- (void)viewDidLayoutSubviews {
+    
+    // next Button on bottom
+    UIColor *buttonColor = [UIColor colorWithRed:(255/255.0) green:(211/255.0) blue:(41/255.0) alpha:1];
+    CGRect nextbtnFrame  = CGRectMake(0, (self.view.frame.size.height-50), self.view.frame.size.width, 50);
+    self.nextButtonKB    = [[UIButton alloc]initWithFrame:nextbtnFrame];
+    [self.nextButtonKB setBackgroundColor: buttonColor];
+    
     if ([segueIDString isEqualToString:@"OverviewToImage"]) {
         self.nextButton.enabled   = NO;
         self.nextButton.tintColor = [UIColor clearColor];
+        [self.nextButtonKB setTitle:@"done" forState:UIControlStateNormal];
+        [self.nextButtonKB addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
+        CGRect btnIndicatorFrame  = CGRectMake(20, (nextbtnFrame.size.height/2 - 10), 20, 20);
+        UIImageView *btnIndicator = [[UIImageView alloc]initWithFrame:btnIndicatorFrame];
+        btnIndicator.image        = [UIImage imageNamed:@"arrowBackWhite"];
+        [self.nextButtonKB addSubview: btnIndicator];
+        
+    } else {
+        [self.nextButtonKB setTitle:@"next" forState:UIControlStateNormal];
+        [self.nextButtonKB addTarget:self action:@selector(nextPressed:) forControlEvents:UIControlEventTouchUpInside];
+        CGRect btnIndicatorFrameB  = CGRectMake((nextbtnFrame.size.width - 44), (nextbtnFrame.size.height/2 - 10), 20, 20);
+        UIImageView *btnIndicatorB = [[UIImageView alloc]initWithFrame:btnIndicatorFrameB];
+        btnIndicatorB.image        = [UIImage imageNamed:@"arrowForwardWhite"];
+        [self.nextButtonKB addSubview: btnIndicatorB];
     }
-    
-    // TODO: move to tapped View
+    [self.view addSubview:self.nextButtonKB];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -253,60 +277,66 @@
 
 - (IBAction)nextPressed:(id)sender {
     
-    // TODO: create animation
+    Singleton *mySingleton       = [Singleton sharedSingleton];
     
-    // animation before Overvie
-    CGRect animFrame = CGRectMake(self.view.bounds.size.width, 0, self.view.frame.size.width, self.view.frame.size.height);
-    UIView *animationView         = [[UIView alloc]initWithFrame:animFrame];
-    UIColor *backgrColor          = [UIColor colorWithRed:(246/255.0) green:(250/255.0) blue:(255/255.0) alpha:1];
-    animationView.backgroundColor = backgrColor;
-    
-    UILabel *mainLabel      = [[UILabel alloc]initWithFrame:CGRectMake(self.view.bounds.size.width, 140, 250, 50)];
-    mainLabel.font          = [UIFont fontWithName:@"GillSans" size:30.0];
-    mainLabel.textAlignment = NSTextAlignmentCenter;
-    mainLabel.text          = @"You're almost there";
-    
-    UILabel *subLabel       = [[UILabel alloc]initWithFrame:CGRectMake(self.view.bounds.size.width, 190, 250, 50)];
-    UIColor *textColor      = [UIColor colorWithRed:(254/255.0) green:(221/255.0) blue:(11/255.0) alpha:1];
-    subLabel.font           = [UIFont fontWithName:@"GillSans Bold" size:28.0];
-    subLabel.textColor      = textColor;
-    subLabel.textAlignment  = NSTextAlignmentCenter;
-    subLabel.text           = @"Only 3 steps to go";
-    
-    UIImageView *logo  = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.bounds.size.width, 250, 88, 76)];
-    logo.image         = [UIImage imageNamed:@"LogoWOtext"];
-    
-    float moveInMain   = (animationView.frame.size.width/2 + 125);
-    float moveInSub    = (animationView.frame.size.width/2 + 125);
-    float moveInLogo   = (animationView.frame.size.width/2 + 44);
-
-    [animationView addSubview:mainLabel];
-    [animationView addSubview:subLabel];
-    [animationView addSubview:logo];
-    [self.view addSubview:animationView];
-    
-    [UIView animateWithDuration:0.4
-                     animations:^{
-                         animationView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 0);
-                     }completion:^(BOOL finished){
-                         
-                         [UIView animateWithDuration:0.2 animations:^{
-                             mainLabel.transform = CGAffineTransformMakeTranslation(-moveInMain, 0);
-                         } completion:^(BOOL finished) {
+    if (mySingleton.singl_coverImage == nil) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Select an image" message:@"Select / Upload a nice image first"
+                                                           delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+        
+    } else {
+        // animation before Overvie
+        CGRect animFrame = CGRectMake(self.view.bounds.size.width, 0, self.view.frame.size.width, self.view.frame.size.height);
+        UIView *animationView         = [[UIView alloc]initWithFrame:animFrame];
+        UIColor *backgrColor          = [UIColor colorWithRed:(246/255.0) green:(250/255.0) blue:(255/255.0) alpha:1];
+        animationView.backgroundColor = backgrColor;
+        
+        UILabel *mainLabel      = [[UILabel alloc]initWithFrame:CGRectMake(self.view.bounds.size.width, 140, 250, 50)];
+        mainLabel.font          = [UIFont fontWithName:@"GillSans" size:30.0];
+        mainLabel.textAlignment = NSTextAlignmentCenter;
+        mainLabel.text          = @"You're almost there";
+        
+        UILabel *subLabel       = [[UILabel alloc]initWithFrame:CGRectMake(self.view.bounds.size.width, 190, 250, 50)];
+        UIColor *textColor      = [UIColor colorWithRed:(254/255.0) green:(221/255.0) blue:(11/255.0) alpha:1];
+        subLabel.font           = [UIFont fontWithName:@"GillSans Bold" size:28.0];
+        subLabel.textColor      = textColor;
+        subLabel.textAlignment  = NSTextAlignmentCenter;
+        subLabel.text           = @"Only 3 steps to go";
+        
+        UIImageView *logo  = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.bounds.size.width, 250, 88, 76)];
+        logo.image         = [UIImage imageNamed:@"LogoWOtext"];
+        
+        float moveInMain   = (animationView.frame.size.width/2 + 125);
+        float moveInSub    = (animationView.frame.size.width/2 + 125);
+        float moveInLogo   = (animationView.frame.size.width/2 + 44);
+        
+        [animationView addSubview:mainLabel];
+        [animationView addSubview:subLabel];
+        [animationView addSubview:logo];
+        [self.view addSubview:animationView];
+        
+        [UIView animateWithDuration:0.4
+                         animations:^{
+                             animationView.transform = CGAffineTransformMakeTranslation(-self.view.frame.size.width, 0);
+                         }completion:^(BOOL finished){
                              
                              [UIView animateWithDuration:0.2 animations:^{
-                                 subLabel.transform = CGAffineTransformMakeTranslation(-moveInSub, 0);
+                                 mainLabel.transform = CGAffineTransformMakeTranslation(-moveInMain, 0);
                              } completion:^(BOOL finished) {
                                  
                                  [UIView animateWithDuration:0.2 animations:^{
-                                     logo.transform = CGAffineTransformMakeTranslation(-moveInLogo, 0);
+                                     subLabel.transform = CGAffineTransformMakeTranslation(-moveInSub, 0);
                                  } completion:^(BOOL finished) {
                                      
-                                     [self performSegueWithIdentifier:@"ImageToOverview" sender:self];
+                                     [UIView animateWithDuration:0.2 animations:^{
+                                         logo.transform = CGAffineTransformMakeTranslation(-moveInLogo, 0);
+                                     } completion:^(BOOL finished) {
+                                         
+                                         [self performSegueWithIdentifier:@"ImageToOverview" sender:self];
+                                     }];
                                  }];
                              }];
                          }];
-                     }];
-
+    }
 }
 @end

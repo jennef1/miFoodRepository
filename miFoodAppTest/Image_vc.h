@@ -36,5 +36,6 @@
 - (IBAction)backPressed:(id)sender;
 - (IBAction)nextPressed:(id)sender;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *nextButton;
+@property (strong, nonatomic) UIButton *nextButtonKB;
 
 @end

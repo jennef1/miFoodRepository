@@ -14,11 +14,15 @@
 @property (strong, nonatomic) IBOutlet UIImageView *userRating;
 
 @property (strong, nonatomic) IBOutlet PFImageView *imagePreview1;
-@property (strong, nonatomic) IBOutlet UILabel *foodTitle;
-@property (strong, nonatomic) IBOutlet UILabel *foodPickUpTime;
-@property (strong, nonatomic) IBOutlet UILabel *foodAddress;
 @property (strong, nonatomic) IBOutlet UILabel *foodPricePlaceHolder;
 @property (strong, nonatomic) IBOutlet UILabel *foodPriceTag;
 @property (strong, nonatomic) IBOutlet UILabel *foodPriceCurrency;
+@property (strong, nonatomic) IBOutlet UILabel *foodTitle;
+@property (strong, nonatomic) IBOutlet UILabel *foodPickUpTime;
+@property (strong, nonatomic) IBOutlet UILabel *foodAddress;
+@property (strong, nonatomic) IBOutlet UILabel *foodDistance;
+@property (strong, nonatomic) IBOutlet UITextField *placeholderDistanceTF;
+
+
 
 @end

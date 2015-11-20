@@ -29,6 +29,8 @@
     [self.calendarManager setContentView:self.jtCalendar];
     [self.calendarManager setDate:[NSDate date]];
     
+    self.selectedDate = [NSDate date];
+    
     // TODO: adjust height of calendar & Check if font can be increased
     self.calendarManager.settings.weekModeEnabled = NO;
     [self.calendarManager reload];

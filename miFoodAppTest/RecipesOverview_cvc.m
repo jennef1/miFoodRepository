@@ -25,6 +25,7 @@
 @synthesize recipeAddButton, responseDics;
 
 static NSString * const reuseIdentifier = @"cellID";
+
 //static NSString * const baseURL = @"http://food2fork.com/api/";
 //static NSString * const apiKey  = @"31a6f30afb8d54d0e8f54b624e200e47";
 

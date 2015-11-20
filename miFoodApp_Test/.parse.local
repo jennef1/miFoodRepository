@@ -1,0 +1,10 @@
+{
+  "applications": {
+    "_default": {
+      "link": "miFoodApp_Test"
+    },
+    "miFoodApp_Test": {
+      "applicationId": "uPlWaVO0ofbzub34tsOjze1jL50nR8zdXTOHOUXn"
+    }
+  }
+}

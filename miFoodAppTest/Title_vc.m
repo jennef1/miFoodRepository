@@ -15,17 +15,17 @@
 
 @implementation Title_vc
 
-@synthesize charactersLeftLabel, maxTextLen, segueIDString;
+@synthesize charactersLeftLabel, maxTextLen, segueIDString, nextButtonKB;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.maxTextLen = 45;
-
-    if ([segueIDString isEqualToString:@"OverviewToTitle"]) {
-        self.nextButton.enabled   = NO;
-        self.nextButton.tintColor = [UIColor clearColor];
-    }
+    self.maxTextLen                  = 50;
+    self.titleInput_tv.textAlignment = NSTextAlignmentCenter;
+    self.titleInput_tv.tintColor     = [UIColor orangeColor];
+    
+    self.titleInput_tv.delegate = self;
+    [self.titleInput_tv becomeFirstResponder];
     
     Singleton* mySingleton = [Singleton sharedSingleton];
     NSString *titleString  = mySingleton.singl_title;
@@ -36,34 +36,45 @@
     } else {
         self.titleInput_tv.hidden  = NO;
     }
-
     
-//    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gill-Sans-regular" size:14]}];
-//    
-//    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-//                                                           [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
-//                                                           shadow, NSShadowAttributeName,
-//                                                           [UIFont fontWithN
-
-    self.titleInput_tv.textAlignment = NSTextAlignmentCenter;
-    self.titleInput_tv.tintColor     = [UIColor orangeColor];
+    // keyboard Accessory View
+    CGRect  keyb_accessoryFrame = CGRectMake(0, 0, self.view.frame.size.width, 70);
+    UIView *keyb_accessoryView  = [[UIView alloc]initWithFrame:keyb_accessoryFrame];
+    keyb_accessoryView.backgroundColor = [UIColor clearColor];
     
-    self.titleInput_tv.delegate = self;
-    [self.titleInput_tv becomeFirstResponder];
-    
-    // charactersCount on top of keyboard
-    CGRect keyb_viewFrame        = CGRectMake(0, 0, self.view.frame.size.width, 30);
-    UIView *keyb_topView         = [[UIView alloc]initWithFrame:keyb_viewFrame];
-    keyb_topView.backgroundColor = [UIColor clearColor];
-    
-    CGRect labelFrame    = CGRectMake(12, 5, 150, 20);
+    CGRect labelFrame    = CGRectMake(12, 0, 150, 20);
     UILabel *keyb_label  = [[UILabel alloc]initWithFrame:labelFrame];
     keyb_label.font      = [UIFont fontWithName:@"Gill Sans" size:13.0f];
     keyb_label.textColor = [UIColor darkGrayColor];
     self.charactersLeftLabel = keyb_label;
     
-    [keyb_topView addSubview:self.charactersLeftLabel];
-    [self.titleInput_tv setInputAccessoryView:keyb_topView];
+    UIColor *buttonColor = [UIColor colorWithRed:(255/255.0) green:(211/255.0) blue:(41/255.0) alpha:1];
+    CGRect buttonFrame   = CGRectMake(0, 20, self.view.frame.size.width, 50);
+    self.nextButtonKB    = [[UIButton alloc]init];
+    [self.nextButtonKB setFrame: buttonFrame];
+    [self.nextButtonKB setBackgroundColor: buttonColor];
+    
+    if ([segueIDString isEqualToString:@"OverviewToTitle"]) {
+        self.nextButton.enabled   = NO;
+        self.nextButton.tintColor = [UIColor clearColor];
+        [self.nextButtonKB setTitle:@"done" forState:UIControlStateNormal];
+        [self.nextButtonKB addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
+        CGRect btnIndicatorFrame  = CGRectMake(20, (buttonFrame.size.height/2 - 10), 20, 20);
+        UIImageView *btnIndicator = [[UIImageView alloc]initWithFrame:btnIndicatorFrame];
+        btnIndicator.image        = [UIImage imageNamed:@"arrowBackWhite"];
+        [self.nextButtonKB addSubview: btnIndicator];
+    } else {
+        [self.nextButtonKB setTitle:@"next" forState:UIControlStateNormal];
+        [self.nextButtonKB addTarget:self action:@selector(nextPressed:) forControlEvents:UIControlEventTouchUpInside];
+        CGRect btnIndicatorFrameB  = CGRectMake((buttonFrame.size.width - 44), (buttonFrame.size.height/2 - 10), 20, 20);
+        UIImageView *btnIndicatorB = [[UIImageView alloc]initWithFrame:btnIndicatorFrameB];
+        btnIndicatorB.image        = [UIImage imageNamed:@"arrowForwardWhite"];
+        [self.nextButtonKB addSubview: btnIndicatorB];
+    }
+    
+    [keyb_accessoryView addSubview:self.nextButtonKB];
+    [keyb_accessoryView addSubview:self.charactersLeftLabel];
+    [self.titleInput_tv setInputAccessoryView:keyb_accessoryView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -149,8 +160,13 @@
 */
 
 - (IBAction)nextPressed:(id)sender {
-    [self performSegueWithIdentifier:@"TitelToImages" sender:self];
-    
+    if (self.titleInput_tv.text.length == 0) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Add a title" message:@"Give your menu a great title first"
+                                                           delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    } else {
+       [self performSegueWithIdentifier:@"TitelToImages" sender:self];
+    }
 }
 
 - (IBAction)backPressed:(id)sender {

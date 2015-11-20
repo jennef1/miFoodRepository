@@ -21,7 +21,7 @@
 // searchField / events
 @property (strong, nonatomic) IBOutlet UITextField *searchBox;
 @property (strong, nonatomic) IBOutlet UITextField *searchTF;
-//@property (strong, nonatomic) IBOutlet UITextField *locationNoBUTTNyetTF;
+@property (strong, nonatomic) IBOutlet UITextField *currentLocTF;
 - (void)textChanged:(UITextField *)textField;
 
 // search result
@@ -48,7 +48,7 @@
 
 // navigation
 @property (strong, nonatomic) NSString *commingFromSegue;
-//- (IBAction)currentLocationPressed:(id)sender;
+- (IBAction)currentLocationPressed:(id)sender;
 - (IBAction)cancelPressed:(id)sender;
 
 @end

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainDetails_vc : UIViewController <UITextFieldDelegate, UIAlertViewDelegate>
+@interface MainDetails_vc : UIViewController <UITextFieldDelegate, UIAlertViewDelegate, UIScrollViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -51,6 +51,7 @@
 - (void)keyboardWillBeHidden:(NSNotification*)aNotification;
 
 // navigation
+@property (strong, nonatomic) UIButton *backButtonKB;
 - (IBAction)backPressed:(id)sender;
 
 

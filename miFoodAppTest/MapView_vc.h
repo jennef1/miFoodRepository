@@ -10,18 +10,19 @@
 #import <MapKit/MapKit.h>
 #import <GoogleMaps/GoogleMaps.h>
 
-@interface MapView_vc : UIViewController <GMSMapViewDelegate, CLLocationManagerDelegate, UITextFieldDelegate> // MKMapViewDelegate
+@interface MapView_vc : UIViewController <GMSMapViewDelegate, CLLocationManagerDelegate, UITextFieldDelegate> 
 
 // map items
-
 @property (strong, nonatomic) IBOutlet GMSMapView *mapFood;
 @property (nonatomic, strong) CLLocationManager   *locationManager;
-- (void)setMapButtonsWithCoordinates:(GMSCameraPosition *)cameraPosition;
+- (void)setMapButtonWithCoordinates:(GMSCameraPosition *)cameraPosition;
 - (void)initiateLocationManager;
 
 // search items
 @property (strong, nonatomic) IBOutlet UITextField *emptyTF;
 @property (strong, nonatomic) IBOutlet UITextField *searchTF;
+@property (strong, nonatomic) IBOutlet UITextField *currentLocTF;
+
 
 @property (nonatomic) CLLocationCoordinate2D searchReturn_Coordinates;
 @property (strong, nonatomic) NSString       *searchReturn_shortAddress;

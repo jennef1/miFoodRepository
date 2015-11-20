@@ -21,5 +21,6 @@
 
 - (IBAction)backPressed:(id)sender;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *backButton;
+@property (strong, nonatomic) UIButton *backButtonKB;
 
 @end

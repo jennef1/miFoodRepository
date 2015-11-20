@@ -36,6 +36,7 @@
     PFGeoPoint *singl_findCoordinates;
     NSString   *singl_findFoodID;
     PFObject   *singl_findObjectDetails;
+    NSArray    *singl_queryResultObjects;
     
     // recipe details
     NSMutableArray *recipeDictionary;
@@ -65,6 +66,7 @@
 @property (nonatomic, strong) PFGeoPoint *singl_findCoordinates;
 @property (nonatomic, strong) NSString   *singl_findFoodID;
 @property (nonatomic, strong) PFObject   *singl_findObjectDetails;
+@property (nonatomic, strong) NSArray    *singl_queryResultObjects;
 
 // recipe details
 @property (nonatomic, strong) NSMutableArray *recipeDictionary;

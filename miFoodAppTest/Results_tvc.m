@@ -8,6 +8,7 @@
 
 #import "Results_tvc.h"
 #import "Results_cell.h"
+#import "MapResults_vc.h"
 #import "Preview_vc.h"
 #import "Login_vc.h"
 #import "Singleton.h"
@@ -27,10 +28,10 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         
-        self.parseClassName         = @"Menus";
-        self.pullToRefreshEnabled   = YES;
-        self.paginationEnabled      = YES;
-        self.objectsPerPage         = 20;
+        self.parseClassName       = @"Menus";
+        self.pullToRefreshEnabled = YES;
+        self.paginationEnabled    = YES;
+        self.objectsPerPage       = 20;
     }
     return self;
 }
@@ -55,26 +56,29 @@
     // This method is called every time objects are loaded from Parse via the PFQuery
 }
 
+#pragma mark - PFQuery
+
 - (PFQuery *)queryForTable {
     
+    PFQuery *query            = [PFQuery queryWithClassName:self.parseClassName];
     Singleton *mySingleton    = [Singleton sharedSingleton];
     
     NSDateFormatter *form     = [[NSDateFormatter alloc] init];
-    [form setDateFormat:@"dd.MMM yy"];
+    form.dateFormat           = @"dd.MMM yy";
     NSString *strDate         = [form stringFromDate:mySingleton.singl_findDate];
     self.dateOnlyForQuery     = strDate;
     self.searchReturnGeoPoint = mySingleton.singl_findCoordinates;
-    PFQuery *query = [PFQuery queryWithClassName:self.parseClassName];
-    [query whereKey:@"offer_status"                 equalTo:@"available"];
-    [query whereKey:@"offer_dateOnlyString"         equalTo:self.dateOnlyForQuery];
-//    [query whereKey:@"address_geoPointCoordinates"  nearGeoPoint:self.searchReturnGeoPoint];
+    
+    [query whereKey:@"offer_status"         equalTo:@"available"];
+//    [query whereKey:@"offer_dateOnlyString" equalTo:self.dateOnlyForQuery];
+
+    [query whereKey:@"address_geoPointCoordinates"  nearGeoPoint:self.searchReturnGeoPoint];
 //   withinKilometers:15.0];
     
     query.limit = 30; // limit query results
     
-    // TODO: order by userRating
+    // TODO: order by userRating // by distance
     //    [query orderByDescending:@"createdAt"];
-    NSLog(@"object count %lu", [self.objects count]);
     
     if (self.pullToRefreshEnabled) {
         query.cachePolicy = kPFCachePolicyNetworkOnly;
@@ -108,14 +112,23 @@
                                    cell.userPicture.clipsToBounds       = YES;
                                }
                            }];
-    
     // menuInfo:
-    NSString *titleString  = object[@"offer_title"];
-    NSLog(@"hello title%@", titleString);
-    NSString *addressName  = object[@"address_name"];
-    NSString *pickUpTime   = object[@"offer_timeOnlyString"];
-    NSNumber *price        = object[@"offer_price"];
-    PFFile *imagefile      = object[@"imageFile0"];
+    NSString *titleString    = object[@"offer_title"];
+    NSString *addressName    = object[@"address_name"];
+    NSString *pickUpTime     = object[@"offer_timeOnlyString"];
+    NSNumber *price          = object[@"offer_price"];
+    PFFile *imagefile        = object[@"coverImageFile"];
+    PFGeoPoint *menuGeoPoint = object[@"address_geoPointCoordinates"];
+    
+    CLLocation *searchLoc    = [[CLLocation alloc]initWithLatitude:self.searchReturnGeoPoint.latitude longitude:self.searchReturnGeoPoint.longitude];
+    CLLocation *menuLoc      = [[CLLocation alloc]initWithLatitude:menuGeoPoint.latitude longitude:menuGeoPoint.longitude];
+    CLLocationDistance dist  = [menuLoc distanceFromLocation:searchLoc];
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setGroupingSeparator:@"'"];
+    [numberFormatter setGroupingSize:3];
+    [numberFormatter setUsesGroupingSeparator:YES];
+    [numberFormatter setMaximumFractionDigits:0];
+    NSString *distnace = [numberFormatter stringFromNumber:[NSNumber numberWithDouble:dist]];
     
     [imagefile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
                  if (!error) {
@@ -130,6 +143,8 @@
     cell.foodTitle.text      = titleString;
     cell.foodPickUpTime.text = pickUpTime;
     cell.foodAddress.text    = addressName;
+//    cell.foodDistance.text   = [NSString stringWithFormat:@"%.0fm",dist];
+    cell.foodDistance.text   = [NSString stringWithFormat:@"%@m",distnace];
     cell.foodPriceTag.text   = [NSString stringWithFormat:@"%@", price];
     
     return cell;
@@ -149,7 +164,6 @@
         // login first:
         [self performSegueWithIdentifier:@"Result2Login" sender:self];
     }
-
 }
 
 #pragma mark - Navigation
@@ -159,8 +173,18 @@
     if ([segue.identifier isEqualToString:@"Result2Login"]) {
         Login_vc *loginVC = [segue destinationViewController];
         [loginVC setComingFromViewController:@"Results_tvc"];
-    }
+        
+    } else if ([segue.identifier isEqualToString:@"showMapResults"]) {
 
+        // TODO: if self.object = nil run the query first (and show a hub)
+    }
+}
+
+- (IBAction)showMapResultsPressed:(id)sender {
+    
+    Singleton *mySingleton = [Singleton sharedSingleton];
+    mySingleton.singl_queryResultObjects = self.objects;
+    [self performSegueWithIdentifier:@"showMapResults" sender:self];
 }
 
 - (IBAction)backPressed:(id)sender {

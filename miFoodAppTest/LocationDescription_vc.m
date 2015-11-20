@@ -15,11 +15,16 @@
 
 @implementation LocationDescription_vc
 
-@synthesize charactersLeftLabel, maxTextLen;
+@synthesize charactersLeftLabel, maxTextLen, backButtonKB;
 
 - (void)viewDidLoad {
     
     self.maxTextLen = 400;
+    self.descriptionInput_tv.textAlignment = NSTextAlignmentCenter;
+    self.descriptionInput_tv.tintColor     = [UIColor orangeColor];
+    
+    self.descriptionInput_tv.delegate = self;
+    [self.descriptionInput_tv becomeFirstResponder];
     
     Singleton* mySingleton   = [Singleton sharedSingleton];
     NSString *locDescription = mySingleton.singl_locationComment;
@@ -30,39 +35,34 @@
     } else {
         self.descriptionPlaceholder_tv.hidden  = NO;
     }
-    // TODO: change color of "backButton" when text bigger
-    
-    //    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Gill-Sans-regular" size:14]}];
-    //
-    //    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-    //                                                           [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], NSForegroundColorAttributeName,
-    //                                                           shadow, NSShadowAttributeName,
-    //                                                           [UIFont fontWithN
-    
-    self.descriptionInput_tv.textAlignment = NSTextAlignmentCenter;
-    self.descriptionInput_tv.tintColor     = [UIColor orangeColor];
-    
-    self.descriptionInput_tv.delegate = self;
-    [self.descriptionInput_tv becomeFirstResponder];
     
     // charactersCount on top of keyboard
-    CGRect keyb_viewFrame        = CGRectMake(0, 0, self.view.frame.size.width, 30);
+    CGRect keyb_viewFrame        = CGRectMake(0, 0, self.view.frame.size.width, 70);
     UIView *keyb_topView         = [[UIView alloc]initWithFrame:keyb_viewFrame];
     keyb_topView.backgroundColor = [UIColor clearColor];
     
-    CGRect labelFrame    = CGRectMake(12, 5, 150, 20);
+    CGRect labelFrame    = CGRectMake(12, 0, 150, 20);
     UILabel *keyb_label  = [[UILabel alloc]initWithFrame:labelFrame];
     keyb_label.font      = [UIFont fontWithName:@"Gill Sans" size:12.0f];
     keyb_label.textColor = [UIColor darkGrayColor];
     self.charactersLeftLabel = keyb_label;
     
-    [keyb_topView addSubview:self.charactersLeftLabel];
-    [self.descriptionInput_tv setInputAccessoryView:keyb_topView];
-}
+    UIColor *buttonColor = [UIColor colorWithRed:(255/255.0) green:(211/255.0) blue:(41/255.0) alpha:1];
+    CGRect buttonFrame   = CGRectMake(0, 20, self.view.frame.size.width, 50);
+    self.backButtonKB    = [[UIButton alloc]init];
+    [self.backButtonKB setFrame: buttonFrame];
+    [self.backButtonKB setBackgroundColor: buttonColor];
+    [self.backButtonKB setTitle:@"done" forState:UIControlStateNormal];
+    [self.backButtonKB addTarget:self action:@selector(backPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    CGRect btnIndicatorFrame  = CGRectMake(20, (buttonFrame.size.height/2 - 10), 20, 20);
+    UIImageView *btnIndicator = [[UIImageView alloc]initWithFrame:btnIndicatorFrame];
+    btnIndicator.image        = [UIImage imageNamed:@"arrowBackWhite"];
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.backButtonKB  addSubview: btnIndicator];
+    [keyb_topView addSubview:self.charactersLeftLabel];
+    [keyb_topView addSubview:self.backButtonKB];
+    [self.descriptionInput_tv setInputAccessoryView:keyb_topView];
 }
 
 #pragma mark - TextViewDelegate

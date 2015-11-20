@@ -85,6 +85,9 @@
         self.detailsLabel.text = details;
         self.tickDetails.image = [UIImage imageNamed:@"TickCircleYellow"];
     }
+    
+    // TODO: even if no locaiton selected self.addressString.lenght is bigger than 0
+    
     if (!([self.addressString length] == 0)) {
         self.infoMissingCount   = self.infoMissingCount - 1;
         self.locationLabel.text = self.addressString;
@@ -193,7 +196,6 @@
 }
 
 - (IBAction)showPreviewPressed:(id)sender {
-    NSLog(@"preview it is");
     [self performSegueWithIdentifier:@"OverviewToPreview" sender:self];
 }
 

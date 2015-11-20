@@ -38,10 +38,11 @@
     [self.emptyTF.layer setCornerRadius:4];
     [self.emptyTF       setClipsToBounds:YES];
     
-    //    [self.locationNoBUTTONyetTF.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
-    //    [self.locationNoBUTTONyetTF.layer setBorderWidth:0.6];
-    //    [self.locationNoBUTTONyetTF.layer setCornerRadius:4];
-
+    [self.currentLocTF.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
+    [self.currentLocTF.layer setBorderWidth:0.6];
+    [self.currentLocTF.layer setCornerRadius:4];
+    [self.currentLocTF       setClipsToBounds:YES];
+    
     [self.locationButton.layer setBorderColor:[[[UIColor grayColor] colorWithAlphaComponent:0.5] CGColor]];
     [self.locationButton.layer setBorderWidth:0.9];
     [self.locationButton.layer setCornerRadius:5];
@@ -59,15 +60,24 @@
     // TODO: if we can get USER REGION - set region
     // + Starting location london in Singleton.h
     
+    Singleton *mySingleton = [Singleton sharedSingleton];
+    CLLocationCoordinate2D existingAddress = mySingleton.singl_coordinates;
+    NSLog(@"existing long: %f, lat: %f", existingAddress.longitude, existingAddress.latitude);
+    
     MKCoordinateRegion initialRegion;
-    CLLocationCoordinate2D startingPoint;
-    startingPoint.latitude  = 51.520380;
-    startingPoint.longitude = -0.156891;
     
     if (!((self.searchReturn_Coordinates.latitude == 0) && (self.searchReturn_Coordinates.longitude == 0))) {
         initialRegion.center.latitude  = self.searchReturn_Coordinates.latitude;
         initialRegion.center.longitude = self.searchReturn_Coordinates.longitude;
+        
+    } else if (!((existingAddress.latitude == 0) && (existingAddress.longitude == 0))) {
+        initialRegion.center.latitude  = existingAddress.latitude;
+        initialRegion.center.longitude = existingAddress.longitude;
+        
     } else {
+        CLLocationCoordinate2D startingPoint;
+        startingPoint.latitude  = 51.520380;
+        startingPoint.longitude = -0.156891;
         initialRegion.center.latitude  = startingPoint.latitude;
         initialRegion.center.longitude = startingPoint.longitude;
     }
@@ -78,7 +88,9 @@
                                               longitude:self.currentCoordinates.longitude
                                                    zoom:15];
     
-    [self setMapButtonsWithCoordinates:initialCam];
+    // TODO: if if self.currentCoordinates is good the setMapButtonWithCoordinates ends up at sea...
+    
+    [self setMapButtonWithCoordinates:initialCam];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -110,15 +122,16 @@
             NSLog(@"location services enabled, good!");
         }
     }
+    self.mapFood.myLocationEnabled = YES;
 }
 
 #pragma mark - GMSMapView Delegates
 
 -(void)mapView:(GMSMapView *)mapView idleAtCameraPosition:(GMSCameraPosition *)position{
-    [self setMapButtonsWithCoordinates:position];
+    [self setMapButtonWithCoordinates:position];
 }
 
-- (void)setMapButtonsWithCoordinates:(GMSCameraPosition *)cameraPosition {
+- (void)setMapButtonWithCoordinates:(GMSCameraPosition *)cameraPosition {
     
     self.hudImageViewTick.alpha = 0;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.locButHubView animated:YES];
@@ -127,6 +140,9 @@
     
     [self.mapFood setCamera:cameraPosition];
     [self.mapFood setMapType:kGMSTypeNormal];
+    NSLog(@"lat: %f lon:%f", cameraPosition.target.latitude, cameraPosition.target.longitude);
+    
+    
     
     // TODO: add HUB spinner
     
@@ -138,13 +154,19 @@
             self.current_shortAddress       = result.lines[0];
             self.current_FormatAddress      = result.lines[1];
             self.current_CityName           = result.locality;
+            self.currentCoordinates         = result.coordinate;
             
             if (self.current_shortAddress.length == 0) {
                 self.locButAddressTitle.text = result.thoroughfare;
             } else {
                 self.locButAddressTitle.text = self.current_shortAddress;
             }
-            self.locButAddressSubTitle.text = self.current_CityName;
+            
+            if (self.current_CityName.length == 0) {
+                self.locButAddressSubTitle.text = self.current_FormatAddress;
+            } else {
+                self.locButAddressSubTitle.text = self.current_CityName;
+            }
         }
     };
     
@@ -155,6 +177,17 @@
     // TODO: check as locButAddressTitle does not showresult when ViewDidLoad
 }
 
+- (IBAction)currentLocationPressed:(id)sender {
+
+    CLLocationCoordinate2D userCoordinates = self.locationManager.location.coordinate;
+    GMSCameraPosition *currentCam = [GMSCameraPosition
+                                        cameraWithLatitude:userCoordinates.latitude
+                                        longitude:userCoordinates.longitude
+                                        zoom:15];
+    
+    [self setMapButtonWithCoordinates:currentCam];
+}
+
 #pragma mark - Navigation
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
@@ -163,9 +196,6 @@
     [msearchvc setCommingFromSegue:@"MapView_vc.h"];
     [self.navigationController pushViewController:msearchvc animated:NO];
     return NO;
-}
-
-- (IBAction)currentLocationPressed:(id)sender {
 }
 
 - (IBAction)addressConfirmPressed:(id)sender {

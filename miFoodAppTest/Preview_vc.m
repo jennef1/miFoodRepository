@@ -34,9 +34,15 @@
     self.addressNameLabel.text    = mySingleton.singl_addressName;
     self.addressCityLabel.text    = mySingleton.singl_cityName;
     self.foodLocationCoordinate   = mySingleton.singl_coordinates;
-    self.locationComment_tv.text  = mySingleton.singl_locationComment;
     self.availabilityCount.text   = [NSString stringWithFormat:@"%d / %d", mySingleton.singl_quantity, mySingleton.singl_quantity];
     double pickuptime             = mySingleton.singl_pickupTime;
+    NSString *locCommentString    = mySingleton.singl_locationComment;
+    
+    if (locCommentString.length == 0) {
+        self.locationComment_tv.text = @"no important news on the location. It should be easy to find... good luck";
+    } else {
+        self.locationComment_tv.text  = mySingleton.singl_locationComment;
+    }
     
     double pickUphour;
     double minutes = modf(pickuptime, &pickUphour);
@@ -166,7 +172,7 @@
 #pragma mark - Parse Save Item
 
 - (void)submitPressed:(id)sender {
-    //
+    
     //    // check if bank details available
     //    NSString *bankDetailsAvailableCompareString = @"available";
     //
@@ -176,6 +182,7 @@
     //    } else {
     //        // show alert and save credit card details
     //    }
+    
     [self saveItemToParse:self];
 }
 
@@ -206,6 +213,10 @@
     PFGeoPoint *coordinatePoint = [PFGeoPoint geoPointWithLatitude:coor.latitude
                                                          longitude:coor.longitude];
     
+    if (locationComments.length == 0) {
+        locationComments = @"no important news on the location. It should be easy to find... good luck";
+    }
+    
     NSDateFormatter *dateOnlyFm = [[NSDateFormatter alloc] init];
     [dateOnlyFm setDateFormat:@"dd.MMM yy"];
     NSString *dateOnlyString    = [dateOnlyFm stringFromDate:dateInput];
@@ -234,7 +245,7 @@
     [menuItems setObject:[NSNumber numberWithDouble:price] forKey:@"offer_price"];
    
     NSData *imageData = UIImagePNGRepresentation(self.coverImage.image);
-    PFFile *imageFile = [PFFile fileWithName:@"image.png" data:imageData];
+    PFFile *imageFile = [PFFile fileWithName:@"imageFile" data:imageData];
     [menuItems setObject:imageFile forKey:@"coverImageFile"];
     
     [menuItems saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

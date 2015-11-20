@@ -17,7 +17,7 @@ static Singleton  *sharedSingleton = nil;
 @synthesize singl_formattedAddressName, singl_addressName, singl_cityName, singl_placeID, singl_coordinates, singl_locationComment;
 
 // find food
-@synthesize singl_findDate, singl_findCityName, singl_findPlaceID, singl_findCoordinates, singl_findFoodID, singl_findObjectDetails;
+@synthesize singl_findDate, singl_findCityName, singl_findPlaceID, singl_findCoordinates, singl_findFoodID, singl_findObjectDetails, singl_queryResultObjects;
 
 // recipe details
 @synthesize recipeDictionary;
